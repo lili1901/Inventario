@@ -1,5 +1,6 @@
 <?php
 session_start();
+require '../config/conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,79 +80,75 @@ session_start();
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
 
           <div id="layoutSidenav_content">
-             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">ACCESORIOS</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
-                        <li class="breadcrumb-item active">Accesorios</li>
-                    </ol>
-                    
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>
-                                <a href="agregarAccesorio.php" class="btn btn-primary float-end">Agregar</a>
-                            </h4>
-                        </div>
-                        <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <!-- Encabezados de la tabla -->
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Tamaño</th>
-                                        <th scope="col">Figura</th>
-                                        <th scope="col">Precio</th>
-                                        <th scope="col">Cantidad</th>                                            
-                                        <th scope="col">Fecha de entrada</th>
-                                        <th scope="col">Editar</th>
-                                        <th scope="col">Eliminar</th>
-                                    </tr>
-                                </thead>
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">EDITAR ACCESORIOS</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
+                            <li class="breadcrumb-item active">Accesorios</li>
+                        </ol>
 
-                                <tbody> <!--Contenido de la tabla  -->
+                       
+                        <div class="card mb-4">
+                            <div class="card-body">
 
+                                <?php
+                                if(isset($_GET['idaccesorios']))
+                                {
+                                    $id_accesorios = mysqli_real_escape_string($conexion, $_GET['idaccesorios']);
+                                    $query = "SELECT * FROM accesorios WHERE idaccesorios='$id_accesorios'";
+                                    $query_run = mysqli_query($conexion, $query);
+
+                                    if(mysqli_num_rows($query_run) > 0)
+                                    {
+                                        $resultado = mysqli_fetch_array($query_run);
+                                ?>
+                                    <form action="crudaccesorios.php" method="POST">
+                                            <input type="hidden" name="idaccesorios" value="<?= $resultado['idaccesorios']; ?>">
+                                            <div class="mb-3">
+                                                <label>Nombre</label>
+                                                <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Cantidad</label>
+                                                <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Tamaño</label>
+                                                <input type="text" name="tamanio" value="<?=$resultado['tamanio'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Precio</label>
+                                                <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Figura</label>
+                                                <input type="text" name="figura" value="<?=$resultado['figura'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Fecha de entrada</label>
+                                                <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <button type="submit" name="update_accesorios" class="btn btn-primary">
+                                                    Update Student
+                                                </button>
+                                            </div>
+
+                                    </form>
                                     <?php
-                                        // Inicia sentencia php para llamar y obtener los datos de la tabla alimento de la base de datos con una sentencia SQL
-                                        require("../config/conexion.php");
-                                        $sql = $conexion -> query("SELECT * FROM accesorios");
-
-                                        while ($resultado = $sql ->fetch_assoc()) {
+                                    }
+                                    else
+                                    {
+                                        echo "<h4>No Such Id Found</h4>";
+                                    }
+                                    }
                                     ?>
 
-                                    <tr>
-                                        <!-- Muestra en pantalla la tabla html los datos actuales de la base de datos -->
-                                        <th scope="row"><?php echo $resultado ['idaccesorios']?></th>
-                                        <th scope="row"><?php echo $resultado ['nombre']?></th>
-                                        <th scope="row"><?php echo $resultado ['tamanio']?></th>
-                                        <th scope="row"><?php echo $resultado ['figura']?></th>
-                                        <th scope="row"><?php echo $resultado ['precio']?></th>
-                                        <th scope="row"><?php echo $resultado ['cantidad']?></th>
-                                        <th scope="row"><?php echo date('d-m-Y', strtotime($resultado ['fechaEntrada']))?></th>
-                                    
-                                        <!-- Botones editar(amarillo) y eliminar(rojo) -->
-                                        <th>
-                                            <a href="editaraccesorios.php?idaccesorios=<?= $resultado['idaccesorios']; ?>" class="btn btn-warning">Editar</a>
-                                        </th>
-
-                                        
-                                        <th>
-                                                    <form action="crudaccesorios.php" method="POST" class="d-inline">
-                                                        <button type="submit" name="eliminar_accesorio" value="<?=$resultado['idaccesorios'];?>" class="btn btn-danger btn-sm">Borrar</button>
-                                                    </form>
-                                        </th>                         
-                                    </tr>
-
-                                    <?php  }  // Finaliza php ?>
-
-                                </tbody> 
-
-                            </table><!-- Finaliza tabla html -->
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
+                </main>
 
 
                 <!-- Finaliza el contenido central de la pagina -->
