@@ -90,7 +90,7 @@ session_start();
                     <div class="card mb-4">
                         <div class="card-header">
                             <h4>
-                                <a href="student-create.php" class="btn btn-primary float-end">Agregar</a>
+                                <a href="agregarAccesorio.php" class="btn btn-primary float-end">Agregar</a>
                             </h4>
                         </div>
                         <div class="card-body">
@@ -132,10 +132,12 @@ session_start();
                                     
                                         <!-- Botones editar(amarillo) y eliminar(rojo) -->
                                         <th><a href="" class="btn btn-warning">Editar</a></th>
-                                        <th><form action="" method="POST" class="d-inline">
-                                            <!-- Aparece una notificación flotante -->
-                                        <input type="submit" onclick="return confirm('¿Deseas borrar este dato?')" value="Borrar" class="btn btn-danger">
-                                        </form>
+
+                                        
+                                        <th>
+                                                    <form action="crudaccesorios.php" method="POST" class="d-inline">
+                                                        <button type="submit" name="eliminar_accesorio" value="<?=$resultado['idaccesorios'];?>" class="btn btn-danger btn-sm">Borrar</button>
+                                                    </form>
                                         </th>                         
                                     </tr>
 

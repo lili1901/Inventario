@@ -2,6 +2,28 @@
 session_start();
 require '../config/conexion.php';
 setlocale(LC_ALL, 'en_US');
+
+if(isset($_POST['eliminar_accesorio']))
+{
+    $idaccesorios = mysqli_real_escape_string($conexion, $_POST['eliminar_accesorio']);
+
+    $query = "DELETE FROM accesorios WHERE idaccesorios='$idaccesorios' ";
+    $query_run = mysqli_query($conexion, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Student Deleted Successfully";
+        header("Location: accesorios.php");
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Student Not Deleted";
+        header("Location: accesorios.php");
+        exit(0);
+    }
+}
+
     
 if(isset($_POST['guardar_accesorio']))
 {
@@ -29,5 +51,7 @@ if(isset($_POST['guardar_accesorio']))
     }
 }
 ?>
+
+
 
 
