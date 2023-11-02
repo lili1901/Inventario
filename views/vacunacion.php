@@ -51,18 +51,30 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Tablas</div>
                 <!-- Categorias de productos barra lateral -->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Categorias
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="alimento.php">Alimentos</a>
-                                    <a class="nav-link" href="accesorios.php">Accesorios</a>
-                                    <a class="nav-link" href="medicamentos.php">Medicamentos</a>
-                                </nav>
-                            </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Categorias
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="alimento.php">Alimentos</a>
+                            <a class="nav-link" href="accesorios.php">Accesorios</a>
+                            <a class="nav-link" href="medicamentos.php">Medicamentos</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Citas próximas
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="paciente.php">Paciente</a>
+                            <a class="nav-link" href="propietario.php">Propietario</a>
+                            <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
+                        </nav>
+                    </div>
 
                 </nav>
             </div>
@@ -88,7 +100,7 @@
                                             <th scope="col">ID</th>
                                             <th scope="col">ID Paciente</th>
                                             <th scope="col">Vacuna</th>
-                                            <th scope="col">Dilvente (nombre de vacuna)</th>
+                                            <th scope="col">Diluente (nombre de vacuna)</th>
                                             <th scope="col">Fecha de vacunación </th>
                                             <th scope="col">Fecha próxima de vacunación</th>
                                             <th scope="col">Nombre del MVZ</th>
@@ -106,8 +118,8 @@
             
                                         // Inicia sentencia php para llamar y obtener los datos de la tabla alimento de la base de datos con una sentencia SQL
             
-                                        require("config/conexion.php");
-                                        $sql = $conexion -> query("SELECT * FROM medicamentos");
+                                        require("../config/conexion.php");
+                                        $sql = $conexion -> query("SELECT * FROM programavacunacion");
             
                                         while ($resultado = $sql ->fetch_assoc()) {
                                            
@@ -116,15 +128,14 @@
                                         
                                             <tr>
                                                 <!-- Muestra en pantalla la tabla html los datos actuales de la base de datos -->
-                                            <th scope="row"><?php echo $resultado ['medicamentosId']?></th>
-                                            <th scope="row"><?php echo $resultado ['Lote']?></th>
-                                            <th scope="row"><?php echo $resultado ['Nombre']?></th>
-                                            <th scope="row"><?php echo $resultado ['Via']?></th>
-                                            <th scope="row"><?php echo $resultado ['Costo']?></th>
-                                            <th scope="row"><?php echo $resultado ['Cantidad']?></th>
-                                            <th scope="row"><?php echo $resultado ['Caducidad']?></th>
-                                            <th scope="row"><?php echo $resultado ['Fecha_entrada']?></th>
-                                            <th scope="row"><?php echo $resultado ['Fecha_salida']?></th>
+                                            <th scope="row"><?php echo $resultado ['idprogramaVacunacion']?></th>
+                                            <th scope="row"><?php echo $resultado ['idpaciente']?></th>
+                                            <th scope="row"><?php echo $resultado ['diluente']?></th>
+                                            <th scope="row"><?php echo $resultado ['mvz']?></th>
+                                            <th scope="row"><?php echo $resultado ['tipoVacuna']?></th>
+                                            <th scope="row"><?php echo $resultado ['fechaVacunacion']?></th>
+                                            <th scope="row"><?php echo $resultado ['fechaProxima']?></th>
+                                            
                                         
                                             <!-- Botones editar(amarillo) y eliminar(rojo) -->
                                             <th><a href="" class="btn btn-warning">Editar</a></th>

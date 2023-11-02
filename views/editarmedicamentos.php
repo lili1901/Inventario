@@ -1,3 +1,7 @@
+<?php
+session_start();
+require '../config/conexion.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -73,13 +77,13 @@
                                 Citas próximas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="paciente.php">Paciente</a>
-                                <a class="nav-link" href="propietario.php">Propietario</a>
-                                <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
-                            </nav>
-                        </div>
+                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="paciente.php">Paciente</a>
+                                    <a class="nav-link" href="propietario.php">Propietario</a>
+                                    <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
+                                </nav>
+                            </div>
                 </nav>
             </div>
 
@@ -88,60 +92,79 @@
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
 
           <div id="layoutSidenav_content">
-             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">AGREGAR ACCESORIOS</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
-                        <li class="breadcrumb-item active">Accesorios</li>
-                    </ol>
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">EDITAR MEDICAMENTOS</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
+                            <li class="breadcrumb-item active">Medicamentos</li>
+                        </ol>
 
-                    <?php include('message.php'); ?>
-                    
-                    <div class="card mb-4">
-                        <div class="card-body">
-                        <form action="crudaccesorios.php" method="POST">
-                            <div class="container">
-                                <div class="row row-cols-auto">
+                       
+                        <div class="card mb-4">
+                            <div class="card-body">
 
-                                    <div class="mb-3">
-                                        <label>Nombre</label>
-                                        <input type="text" name="nombre" class="form-control">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Cantidad</label>
-                                        <input type="text" name="cantidad" class="form-control">
-                                    </div>                           
-                                    <div class="mb-3">
-                                        <label>Tamaño</label>
-                                        <input type="text" name="tamanio" class="form-control" >
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Precio</label>
-                                        <input type="text" name="precio" class="form-control">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Figura</label>
-                                        <input type="text" name="figura" class="form-control">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Fecha de entrada</label>                                        
-                                        <input type="date" name="fechaEntrada" class="form-control">
-                                    </div>
+                                <?php
+                                if(isset($_GET['idmedicamento']))
+                                {
+                                    $id_medicamento = mysqli_real_escape_string($conexion, $_GET['idmedicamento']);
+                                    $query = "SELECT * FROM medicamento WHERE idmedicamento='$id_medicamento'";
+                                    $query_run = mysqli_query($conexion, $query);
 
-                                </div>
-                                <div class="mb-3">
-                                <button type="submit" name="guardar_accesorio" class="btn btn-primary">Guardar</button>
-                            </div>
-                            </div>
+                                    if(mysqli_num_rows($query_run) > 0)
+                                    {
+                                        $resultado = mysqli_fetch_array($query_run);
+                                ?>
+                                    <form action="crudmedicamentos.php" method="POST">
+                                            <input type="hidden" name="idmedicamento" value="<?= $resultado['idmedicamento']; ?>">
+                                            <div class="mb-3">
+                                                <label>Lote</label>
+                                                <input type="text" name="lote" value="<?=$resultado['lote'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Nombre</label>
+                                                <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Vía de administración</label>
+                                                <input type="text" name="viaadmon" value="<?=$resultado['viaadmon'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Precio</label>
+                                                <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Cantidad</label>
+                                                <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Fecha de caducidad</label>
+                                                <input type="text" name="fechaCaducidad" value="<?=$resultado['fechaCaducidad'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Fecha de entrada</label>
+                                                <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <button type="submit" name="update_medicamento" class="btn btn-primary">
+                                                    Actualizar
+                                                </button>
+                                            </div>
 
-                            
-                        </form>
+                                    </form>
+                                    <?php
+                                    }
+                                    else
+                                    {
+                                        echo "<h4>No Such Id Found</h4>";
+                                    }
+                                    }
+                                    ?>
 
                             </div>
                         </div>
                     </div>
-                    </main>
+                </main>
 
 
                 <!-- Finaliza el contenido central de la pagina -->

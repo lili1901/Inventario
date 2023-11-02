@@ -65,7 +65,7 @@ if(isset($_POST['guardar_accesorio']))
     $fechaSave = $_POST['fechaEntrada'];
     
     $query = "INSERT INTO accesorios (cantidad,figura,nombre,precio,tamanio,fechaEntrada) VALUES ('$cantidad','$figura','$name','$precio','$tamanio','$fechaSave')";
-    echo " hola";
+  
     $query_run = mysqli_query($conexion, $query);
     if($query_run)
     {

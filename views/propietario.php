@@ -51,18 +51,30 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Tablas</div>
                 <!-- Categorias de productos barra lateral -->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Categorias
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="alimento.php">Alimentos</a>
-                                    <a class="nav-link" href="accesorios.php">Accesorios</a>
-                                    <a class="nav-link" href="medicamentos.php">Medicamentos</a>
-                                </nav>
-                            </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Categorias
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="alimento.php">Alimentos</a>
+                            <a class="nav-link" href="accesorios.php">Accesorios</a>
+                            <a class="nav-link" href="medicamentos.php">Medicamentos</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Citas próximas
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="paciente.php">Paciente</a>
+                            <a class="nav-link" href="propietario.php">Propietario</a>
+                            <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
+                        </nav>
+                    </div>
 
                 </nav>
             </div>
@@ -107,7 +119,7 @@
                                         // Inicia sentencia php para llamar y obtener los datos de la tabla alimento de la base de datos con una sentencia SQL
             
                                         require("../config/conexion.php");
-                                        $sql = $conexion -> query("SELECT * FROM medicamentos");
+                                        $sql = $conexion -> query("SELECT * FROM propietario");
             
                                         while ($resultado = $sql ->fetch_assoc()) {
                                            
@@ -116,15 +128,14 @@
                                         
                                             <tr>
                                                 <!-- Muestra en pantalla la tabla html los datos actuales de la base de datos -->
-                                            <th scope="row"><?php echo $resultado ['medicamentosId']?></th>
-                                            <th scope="row"><?php echo $resultado ['Lote']?></th>
-                                            <th scope="row"><?php echo $resultado ['Nombre']?></th>
-                                            <th scope="row"><?php echo $resultado ['Via']?></th>
-                                            <th scope="row"><?php echo $resultado ['Costo']?></th>
-                                            <th scope="row"><?php echo $resultado ['Cantidad']?></th>
-                                            <th scope="row"><?php echo $resultado ['Caducidad']?></th>
-                                            <th scope="row"><?php echo $resultado ['Fecha_entrada']?></th>
-                                            <th scope="row"><?php echo $resultado ['Fecha_salida']?></th>
+                                            <th scope="row"><?php echo $resultado ['idpropietario']?></th>                                            
+                                            <th scope="row"><?php echo $resultado ['nombre']?></th>
+                                            <th scope="row"><?php echo $resultado ['apellidos']?></th>
+                                            <th scope="row"><?php echo $resultado ['direccion']?></th>
+                                            <th scope="row"><?php echo $resultado ['email']?></th>
+                                            <th scope="row"><?php echo $resultado ['telefono']?></th>
+                                            <th scope="row"><?php echo $resultado ['idpaciente']?></th>
+                                            
                                         
                                             <!-- Botones editar(amarillo) y eliminar(rojo) -->
                                             <th><a href="" class="btn btn-warning">Editar</a></th>

@@ -7,8 +7,13 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Gestor de inventario</title>
+ 
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+
+
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -23,6 +28,9 @@
                     <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div> -->
             </form>
+
+                      
+            
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -36,24 +44,23 @@
                 </li>
             </ul>
         </nav>
-        
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">PáginaS</div>
+                            <div class="sb-sidenav-menu-heading">Páginas</div>
                             <a class="nav-link" href="admin.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
                             <div class="sb-sidenav-menu-heading">Tablas</div>
                 <!-- Categorias de productos barra lateral -->
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                    Categorías
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Categorias
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="alimento.php">Alimentos</a>
@@ -61,7 +68,6 @@
                                     <a class="nav-link" href="medicamentos.php">Medicamentos</a>
                                 </nav>
                             </div>
-
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Citas próximas
@@ -77,28 +83,89 @@
                 </nav>
             </div>
 
-            <div id="layoutSidenav_content">
+
 
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Perfil administrador</h1>
-                        <ol class="breadcrumb mb-4">
-                            <!-- <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> -->
-                            <li class="breadcrumb-item active">Administrador</li>
-                        </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <p class="mb-0">
-                                    Bienvenido
-                                   
-                                      </p>
+
+          <div id="layoutSidenav_content">
+             <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">AGREGAR PACIENTE</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
+                        <li class="breadcrumb-item active">Accesorios</li>
+                    </ol>
+
+                    <?php include('message.php'); ?>
+                    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                        <form action="crudPaciente.php" method="POST">
+                            <div class="container">
+                                <div class="row row-cols-auto">
+
+                                    <div class="mb-3">
+                                        <label>Nombre</label>
+                                        <input type="text" name="nombre" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Especie</label>
+                                        <input type="text" name="especie" class="form-control">
+                                    </div>                           
+                                    <div class="mb-3">
+                                        <label>Raza</label>
+                                        <input type="text" name="raza" class="form-control" >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Color</label>
+                                        <input type="text" name="color" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Sexo</label>
+                                        <input type="text" name="sexo" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Fecha de nacimiento</label>                                        
+                                        <input type="date" name="fechaNacimiento" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Nombre de Propietario</label>                                        
+                                        <input type="text" name="nombreP" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Apellidos de Propietario</label>                                        
+                                        <input type="text" name="apellidos" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Dirección</label>                                        
+                                        <input type="text" name="direccion" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Telefóno</label>                                        
+                                        <input type="text" name="telefono" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Email</label>                                        
+                                        <input type="email" name="email" class="form-control">
+                                    </div>
+                                                                      
+
+
+
+                                </div>
+                                <div class="mb-3">
+                                <button type="submit" name="guardar_paciente" class="btn btn-primary">Guardar</button>
+                            </div>
+                            </div>
+
+                            
+                        </form>
+
                             </div>
                         </div>
-                        <div style="height: 100vh"></div>
-                        <div class="card mb-4"><div class="card-body">Hola</div></div>
                     </div>
-                </main>
+                    </main>
+
 
                 <!-- Finaliza el contenido central de la pagina -->
                 <footer class="py-4 bg-light mt-auto">
@@ -117,5 +184,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>
