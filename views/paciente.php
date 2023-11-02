@@ -111,12 +111,13 @@ session_start();
                                     <!-- Encabezados de la tabla -->
                                     <tr>
                                         <th scope="col">Clave</th>
-                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Nombre paciente</th>
                                         <th scope="col">Fecha de nacimiento</th>
                                         <th scope="col">Raza</th>
                                         <th scope="col">Color</th>
                                         <th scope="col">Especie</th>
                                         <th scope="col">Sexo</th>
+                                        <th scope="col">Nombre propietario</th>
                                         <th scope="col">Editar</th>
                                         <th scope="col">Eliminar</th>
                                     </tr>
@@ -127,9 +128,7 @@ session_start();
                                     <?php
                                         // Inicia sentencia php para llamar y obtener los datos de la tabla alimento de la base de datos con una sentencia SQL
                                         require("../config/conexion.php");
-                                        $sql = $conexion -> query("SELECT * FROM paciente");
-
-                                        SELECT 
+                                        $sql = $conexion -> query("SELECT pa.idpaciente,pa.nombre as paciente,pa.fechaNacimiento,pa.raza,pa.color,pa.especie,pa.sexo,p.nombre as propietario, pa.nombre as paciente  FROM propietario as p INNER JOIN paciente as pa ON p.idpaciente = pa.idpaciente");                                   
     
 
                                         while ($resultado = $sql ->fetch_assoc()) {
@@ -138,12 +137,14 @@ session_start();
                                         <tr>
                                         <!-- Muestra en pantalla la tabla html los datos actuales de la base de datos -->
                                             <th scope="row"><?php echo $resultado ['idpaciente']?></th>    
-                                            <th scope="row"><?php echo $resultado ['nombre']?></th>
+                                            <th scope="row"><?php echo $resultado ['paciente']?></th>
                                             <th scope="row"><?php echo $resultado ['fechaNacimiento']?></th>
                                             <th scope="row"><?php echo $resultado ['raza']?></th>
                                             <th scope="row"><?php echo $resultado ['color']?></th>
                                             <th scope="row"><?php echo $resultado ['especie']?></th>
                                             <th scope="row"><?php echo $resultado ['sexo']?></th>
+                                            <th scope="row"><?php echo $resultado ['propietario']?></th>
+
                                         <!-- Botones editar(amarillo) y eliminar(rojo) -->
                                         <th>
                                             <a href="editaraccesorios.php?idpaciente=<?= $resultado['idpaciente']; ?>" class="btn btn-warning">
