@@ -95,14 +95,14 @@ session_start();
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">PACIENTE</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
-                        <li class="breadcrumb-item active">Accesorios</li>
+                        <li class="breadcrumb-item"><a href="admin.html">Citas</a></li> 
+                        <li class="text-center">Pacientes</li>
                     </ol>
                     
                     <div class="card mb-4">
                         <div class="card-header">
                             <h4>
-                                <a href="agregarPaciente.php" class="btn btn-success float-end">Agregar</a>
+                                <a href="agregarPaciente.php" class="btn btn-success float-end">Programar vacuna</a>
                             </h4>
                         </div>
                         <div class="card-body">
@@ -144,6 +144,7 @@ session_start();
                                             <th scope="row"><?php echo $resultado ['especie']?></th>
                                             <th scope="row"><?php echo $resultado ['sexo']?></th>
                                             <th scope="row"><?php echo $resultado ['propietario']?></th>
+                                            
 
                                         <!-- Botones editar(amarillo) y eliminar(rojo) -->
                                         <th>

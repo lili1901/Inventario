@@ -95,6 +95,7 @@ require '../config/conexion.php';
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">EDITAR ALIMENTOS</h1>
+                        <meta charset="utf-8">
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
                             <li class="breadcrumb-item active">Alimentos</li>
@@ -102,69 +103,71 @@ require '../config/conexion.php';
 
                        
                         <div class="card mb-4">
-                            <div class="card-body">
+                            <div class="col-md-4">
+                                <div class="card-body">
 
-                                <?php
-                                if(isset($_GET['idalimento']))
-                                {
-                                    $id_alimento = mysqli_real_escape_string($conexion, $_GET['idalimento']);
-                                    $query = "SELECT * FROM alimento WHERE idalimento='$id_alimento'";
-                                    $query_run = mysqli_query($conexion, $query);
-
-                                    if(mysqli_num_rows($query_run) > 0)
-                                    {
-                                        $resultado = mysqli_fetch_array($query_run);
-                                ?>
-                                    <form action="crudalimento.php" method="POST">
-                                            <input type="hidden" name="idalimento" value="<?= $resultado['idalimento']; ?>">
-                                            <div class="mb-3">
-                                                <label>Lote</label>
-                                                <input type="text" name="lote" value="<?=$resultado['lote'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Nombre</label>
-                                                <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Especie</label>
-                                                <input type="text" name="especie" value="<?=$resultado['especie'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Precio</label>
-                                                <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Cantidad</label>
-                                                <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Edad</label>
-                                                <input type="text" name="edad" value="<?=$resultado['edad'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Fecha de caducidad</label>
-                                                <input type="text" name="fechaCaducidad" value="<?=$resultado['fechaCaducidad'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Fecha de entrada</label>
-                                                <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <button type="submit" name="update_alimento" class="btn btn-primary">
-                                                    Actualizar
-                                                </button>
-                                            </div>
-
-                                    </form>
                                     <?php
-                                    }
-                                    else
+                                    if(isset($_GET['idalimento']))
                                     {
-                                        echo "<h4>No Such Id Found</h4>";
-                                    }
-                                    }
-                                    ?>
+                                        $id_alimento = mysqli_real_escape_string($conexion, $_GET['idalimento']);
+                                        $query = "SELECT * FROM alimento WHERE idalimento='$id_alimento'";
+                                        $query_run = mysqli_query($conexion, $query);
 
+                                        if(mysqli_num_rows($query_run) > 0)
+                                        {
+                                            $resultado = mysqli_fetch_array($query_run);
+                                    ?>
+                                        <form action="crudalimento.php" method="POST">
+                                                <input type="hidden" name="idalimento" value="<?= $resultado['idalimento']; ?>">
+                                                <div class="mb-4">
+                                                    <label>Lote</label>
+                                                    <input type="text" name="lote" value="<?=$resultado['lote'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Nombre</label>
+                                                    <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Especie</label>
+                                                    <input type="text" name="especie" value="<?=$resultado['especie'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Precio</label>
+                                                    <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Cantidad</label>
+                                                    <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Edad</label>
+                                                    <input type="text" name="edad" value="<?=$resultado['edad'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Fecha de caducidad</label>
+                                                    <input type="text" name="fechaCaducidad" value="<?=$resultado['fechaCaducidad'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Fecha de entrada</label>
+                                                    <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button type="submit" name="update_alimento" class="btn btn-primary">
+                                                        Actualizar
+                                                    </button>
+                                                </div>
+
+                                        </form>
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                            echo "<h4>No Such Id Found</h4>";
+                                        }
+                                        }
+                                        ?>
+
+                                </div>
                             </div>
                         </div>
                     </div>

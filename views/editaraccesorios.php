@@ -102,61 +102,63 @@ require '../config/conexion.php';
 
                        
                         <div class="card mb-4">
-                            <div class="card-body">
+                            <div class="col-md-4">
+                                <div class="card-body">
 
-                                <?php
-                                if(isset($_GET['idaccesorios']))
-                                {
-                                    $id_accesorios = mysqli_real_escape_string($conexion, $_GET['idaccesorios']);
-                                    $query = "SELECT * FROM accesorios WHERE idaccesorios='$id_accesorios'";
-                                    $query_run = mysqli_query($conexion, $query);
-
-                                    if(mysqli_num_rows($query_run) > 0)
-                                    {
-                                        $resultado = mysqli_fetch_array($query_run);
-                                ?>
-                                    <form action="crudaccesorios.php" method="POST">
-                                            <input type="hidden" name="idaccesorios" value="<?= $resultado['idaccesorios']; ?>">
-                                            <div class="mb-3">
-                                                <label>Nombre</label>
-                                                <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Cantidad</label>
-                                                <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Tamaño</label>
-                                                <input type="text" name="tamanio" value="<?=$resultado['tamanio'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Precio</label>
-                                                <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Figura</label>
-                                                <input type="text" name="figura" value="<?=$resultado['figura'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Fecha de entrada</label>
-                                                <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <button type="submit" name="update_accesorios" class="btn btn-primary">
-                                                    Actualizar datos
-                                                </button>
-                                            </div>
-
-                                    </form>
                                     <?php
-                                    }
-                                    else
+                                    if(isset($_GET['idaccesorios']))
                                     {
-                                        echo "<h4>No Such Id Found</h4>";
-                                    }
-                                    }
-                                    ?>
+                                        $id_accesorios = mysqli_real_escape_string($conexion, $_GET['idaccesorios']);
+                                        $query = "SELECT * FROM accesorios WHERE idaccesorios='$id_accesorios'";
+                                        $query_run = mysqli_query($conexion, $query);
 
+                                        if(mysqli_num_rows($query_run) > 0)
+                                        {
+                                            $resultado = mysqli_fetch_array($query_run);
+                                    ?>
+                                        <form action="crudaccesorios.php" method="POST">
+                                                <input type="hidden" name="idaccesorios" value="<?= $resultado['idaccesorios']; ?>">
+                                                <div class="mb-3">
+                                                    <label>Nombre</label>
+                                                    <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Cantidad</label>
+                                                    <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Tamaño</label>
+                                                    <input type="text" name="tamanio" value="<?=$resultado['tamanio'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Precio</label>
+                                                    <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Figura</label>
+                                                    <input type="text" name="figura" value="<?=$resultado['figura'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Fecha de entrada</label>
+                                                    <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button type="submit" name="update_accesorios" class="btn btn-primary">
+                                                        Actualizar datos
+                                                    </button>
+                                                </div>
+
+                                        </form>
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                            echo "<h4>No Such Id Found</h4>";
+                                        }
+                                        }
+                                        ?>
+
+                                </div>
                             </div>
                         </div>
                     </div>

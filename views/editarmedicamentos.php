@@ -102,65 +102,67 @@ require '../config/conexion.php';
 
                        
                         <div class="card mb-4">
-                            <div class="card-body">
+                            <div class="col-md-4">
+                                <div class="card-body">
 
-                                <?php
-                                if(isset($_GET['idmedicamento']))
-                                {
-                                    $id_medicamento = mysqli_real_escape_string($conexion, $_GET['idmedicamento']);
-                                    $query = "SELECT * FROM medicamento WHERE idmedicamento='$id_medicamento'";
-                                    $query_run = mysqli_query($conexion, $query);
-
-                                    if(mysqli_num_rows($query_run) > 0)
-                                    {
-                                        $resultado = mysqli_fetch_array($query_run);
-                                ?>
-                                    <form action="crudmedicamentos.php" method="POST">
-                                            <input type="hidden" name="idmedicamento" value="<?= $resultado['idmedicamento']; ?>">
-                                            <div class="mb-3">
-                                                <label>Lote</label>
-                                                <input type="text" name="lote" value="<?=$resultado['lote'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Nombre</label>
-                                                <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Vía de administración</label>
-                                                <input type="text" name="viaadmon" value="<?=$resultado['viaadmon'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Precio</label>
-                                                <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Cantidad</label>
-                                                <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Fecha de caducidad</label>
-                                                <input type="text" name="fechaCaducidad" value="<?=$resultado['fechaCaducidad'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label>Fecha de entrada</label>
-                                                <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <button type="submit" name="update_medicamento" class="btn btn-primary">
-                                                    Actualizar
-                                                </button>
-                                            </div>
-
-                                    </form>
                                     <?php
-                                    }
-                                    else
+                                    if(isset($_GET['idmedicamento']))
                                     {
-                                        echo "<h4>No Such Id Found</h4>";
-                                    }
-                                    }
-                                    ?>
+                                        $id_medicamento = mysqli_real_escape_string($conexion, $_GET['idmedicamento']);
+                                        $query = "SELECT * FROM medicamento WHERE idmedicamento='$id_medicamento'";
+                                        $query_run = mysqli_query($conexion, $query);
 
+                                        if(mysqli_num_rows($query_run) > 0)
+                                        {
+                                            $resultado = mysqli_fetch_array($query_run);
+                                    ?>
+                                        <form action="crudmedicamentos.php" method="POST">
+                                                <input type="hidden" name="idmedicamento" value="<?= $resultado['idmedicamento']; ?>">
+                                                <div class="mb-3">
+                                                    <label>Lote</label>
+                                                    <input type="text" name="lote" value="<?=$resultado['lote'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Nombre</label>
+                                                    <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Vía de administración</label>
+                                                    <input type="text" name="viaadmon" value="<?=$resultado['viaadmon'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Precio</label>
+                                                    <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Cantidad</label>
+                                                    <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Fecha de caducidad</label>
+                                                    <input type="text" name="fechaCaducidad" value="<?=$resultado['fechaCaducidad'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label>Fecha de entrada</label>
+                                                    <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button type="submit" name="update_medicamento" class="btn btn-primary">
+                                                        Actualizar
+                                                    </button>
+                                                </div>
+
+                                        </form>
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                            echo "<h4>No Such Id Found</h4>";
+                                        }
+                                        }
+                                        ?>
+
+                                </div>
                             </div>
                         </div>
                     </div>

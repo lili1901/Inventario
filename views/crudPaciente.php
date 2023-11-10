@@ -35,18 +35,31 @@ if(isset($_POST['guardar_paciente']))
         VALUES ('$nombrePropietario','$apellidos','$direccion','$telefono','$email','$lastid')";
 
         $query_run = mysqli_query($conexion, $query2);
-        if($query_run)
+
+        for($i = 0; $i < count($_POST["tipoVacuna"]); $i++)
         {
-            $_SESSION['message'] = "Student Created Successfully";
-            header("Location: paciente.php");
-            exit(0);
-        }        
-    }
-    else
-    {
+            $tipoVacu = mysqli_real_escape_string($conexion, $_POST['tipoVacuna'][$i]);            
+            $fechaVacu = $_POST['fechaProxima'][$i];  
+    
+            $query3 = "INSERT INTO programavacunacion (tipoVacuna,fechaProxima,idPacie)
+            VALUES ('$tipoVacu','$fechaVacu','$lastid')";
+    
+            $query_run = mysqli_query($conexion, $query3); 
+        }
+
+            if($query_run)
+            {
+                $_SESSION['message'] = "Student Created Successfully";
+                header("Location: paciente.php");
+                exit(0);
+            }        
+            }
+            else
+            { 
         $_SESSION['message'] = "Student Not Created";
         header("Location: paciente.php");
         exit(0);
     }
 }
+
 ?>
