@@ -101,53 +101,53 @@
 
             <!-- Inicia contenido de la pagina del perfil del administrador -->
             <div id="layoutSidenav_content">
-             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">PROGRAMACIÓN DE CITAS</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="admin.html">Citas</a></li> 
-                        <li class="breadcrumb-item active">Agregar Paciente</li>
-                    </ol>
-                    <?php include('message.php'); ?>                    
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <form action="crudPaciente.php" method="POST">
-                                <div class="container">
-                                    <h4 class="card-title text-center">PACIENTE</h4>
-                                    <div class="row row-cols-auto">                                        
-                                        <div class="mb-3">
-                                            <label>Nombre</label>
-                                            <input type="text" name="nombre" class="form-control">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">PROGRAMACIÓN DE CITAS</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="admin.html">Citas</a></li> 
+                            <li class="breadcrumb-item active">Agregar Paciente</li>
+                        </ol>
+                        <?php include('message.php'); ?>                    
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form action="crudPaciente.php" method="POST">
+                                    <div class="container">
+                                        <h4 class="card-title text-center">PACIENTE</h4>
+                                        <div class="row row-cols-auto">                                        
+                                            <div class="mb-3">
+                                                <label>Nombre</label>
+                                                <input type="text" name="nombre" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Especie</label>
+                                                <input type="text" name="especie" class="form-control">
+                                            </div>                           
+                                            <div class="mb-3">
+                                                <label>Raza</label>
+                                                <input type="text" name="raza" class="form-control" >
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Color</label>
+                                                <input type="text" name="color" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Sexo</label>
+                                                <input type="text" name="sexo" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Fecha de nacimiento</label>                                        
+                                                <input type="date" name="fechaNacimiento" class="form-control">
+                                            </div>                                                          
                                         </div>
-                                        <div class="mb-3">
-                                            <label>Especie</label>
-                                            <input type="text" name="especie" class="form-control">
-                                        </div>                           
-                                        <div class="mb-3">
-                                            <label>Raza</label>
-                                            <input type="text" name="raza" class="form-control" >
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>Color</label>
-                                            <input type="text" name="color" class="form-control">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>Sexo</label>
-                                            <input type="text" name="sexo" class="form-control">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>Fecha de nacimiento</label>                                        
-                                            <input type="date" name="fechaNacimiento" class="form-control">
-                                        </div>                                                          
-                                    </div>
 
-                                   <!-- <hr class="hr hr-blurry"/> -->
+                                        <hr class="hr hr-blurry"/>
                                     
-                                    <h4 class="card-title text-center">PROPIETARIO</h4>
+                                        <h4 class="card-title text-center">PROPIETARIO</h4>
                                         <div class="row row-cols-auto">                                  
                                             <div class="mb-3">
                                                 <label>Nombre de Propietario</label>                                        
-                                                <input type="text" name="nombreP" class="form-control">
+                                                <input type="text" name="nompropietario" class="form-control">
                                             </div>
                                             <div class="mb-3">
                                                 <label>Apellidos de Propietario</label>                                        
@@ -168,51 +168,46 @@
                                         </div>
 
                                       
-                                <div class="page-content page-container" id="page-content">
-                                    <div class="padding">
-                                        <div class="row container d-flex justify-content-center">
-                                            <div class="col-lg-8 grid-margin stretch-card">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title text-center">VACUNAS</h4>
-                                                        <hr>
-                                                        
-                                                        <div class="table-responsive">
-                                                            <table id="faqs" class="table table-hover">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Vacuna</th>
-                                                                        <th>Próxima fecha de vacunación</th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="tbodyVac">
-                                                                   <!--<tr>
-                                                                        <td><input type="text" class="form-control" placeholder="Vacuna" name="vacuna[]"></td>
-                                                                        <td><input type="date" placeholder="Fecha" class="form-control" name="fechaVacuna[]"></td>
-                                                                        <td class="mt-10"><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>
-                                                                    </tr>-->
-
-                                                                    
-                                                                    
-                                                                </tbody>
-                                                            </table>
+                                        <div class="page-content page-container" id="page-content">
+                                            <div class="row container d-flex justify-content-center">
+                                                <div class="col-lg-8 grid-margin stretch-card">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title text-center">VACUNAS</h4>
+                                                            <hr>
+                                                    
+                                                            <div class="table-responsive">
+                                                                <table id="faqs" class="table table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Vacuna</th>
+                                                                            <th>Próxima fecha de vacunación</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbodyVac">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <button type="button" onclick="addItem();" class="btn btn-success float-end">
+                                                                    <i class="fa fa-plus"></i> Nueva vacuna
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                        <div class="text-center"><button type="button" onclick="addItem();" class="btn btn-success float-end"><i class="fa fa-plus"></i> Nueva vacuna</button></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="mb-3 text-center" style="padding-top: 20px">
+                                            <button type="submit" name="guardar_paciente" class="btn btn-primary">Guardar</button>
+                                        </div>
                                     </div>
-                                    <div class="mb-3 text-center" style="padding-top: 20px">
-                                        <button type="submit" name="guardar_paciente" class="btn btn-primary">Guardar</button>
-                                    </div>  
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
+                </main>
 
 
                 <!-- Finaliza el contenido central de la pagina -->

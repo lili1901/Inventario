@@ -3,11 +3,62 @@ session_start();
 require '../config/conexion.php';
 setlocale(LC_ALL, 'en_US');
 
+if(isset($_POST['update_paciente']))
+{
+    $id_paciente = mysqli_real_escape_string($conexion, $_POST['idpaciente']);
 
+    $nombre_Paciente = mysqli_real_escape_string($conexion, $_POST['nombrePaciente']);
+    $fechaNacimieto = $_POST['fechaNacimiento'];
+    $razaPa = mysqli_real_escape_string($conexion, $_POST['raza']);
+    $color = mysqli_real_escape_string($conexion, $_POST['color']);
+    $especie = mysqli_real_escape_string($conexion, $_POST['especie']);
+    $sexo = mysqli_real_escape_string($conexion, $_POST['sexo']);
+
+    $query = "UPDATE paciente SET
+     nombrePaciente='$nombre_Paciente', fechaNacimiento='$fechaNacimieto', raza='$razaPa', color='$color',especie= '$especie',sexo= '$sexo'
+      WHERE idpaciente='$id_paciente' ";
+    $query_run = mysqli_query($conexion, $query);
+
+    
+
+    $id_propietario = mysqli_real_escape_string($conexion, $_POST['idpropietario']);
+
+    $nombre_Propietario = mysqli_real_escape_string($conexion, $_POST['nombrepropietario']);
+
+    $query2 = "UPDATE propietario SET nombre ='$nombre_Propietario' WHERE idpropietario='$id_propietario' ";
+    $query_run = mysqli_query($conexion, $query2);
+
+
+    $id_vacunacion = mysqli_real_escape_string($conexion, $_POST['idprogramaVacunacion']);
+
+    $query3 = "UPDATE programavacunacion SET
+    tipoVacuna='$tipoVacu', fechaProxima='$fechaVacu'
+    WHERE idprogramaVacunacion='$id_vacunacion'";
+
+    $query_run2 = mysqli_query($conexion, $query3);
+
+    
+
+
+
+    if($query_run2)
+    {
+        $_SESSION['message'] = "Student Updated Successfully";
+        header("Location: paciente.php");
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Student Not Updated";
+        header("Location: paciente.php");
+        exit(0);
+    }
+
+}
      
 if(isset($_POST['guardar_paciente']))
 {
-    $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+    $nombre = mysqli_real_escape_string($conexion, $_POST['nombrePaciente']);
     $raza = mysqli_real_escape_string($conexion, $_POST['raza']);
     $color = mysqli_real_escape_string($conexion, $_POST['color']);
     $especie = mysqli_real_escape_string($conexion, $_POST['especie']);
@@ -15,7 +66,7 @@ if(isset($_POST['guardar_paciente']))
     $fechaNacimiento = $_POST['fechaNacimiento'];     
     
     
-    $query = "INSERT INTO paciente (nombre,raza,color,especie,sexo,fechaNacimiento)
+    $query = "INSERT INTO paciente (nombrePaciente,raza,color,especie,sexo,fechaNacimiento)
     VALUES ('$nombre','$raza','$color','$especie','$sexo','$fechaNacimiento')";
   
     $query_run = mysqli_query($conexion, $query);
@@ -25,7 +76,7 @@ if(isset($_POST['guardar_paciente']))
 
         echo "Ultimo ID : ".$lastid; 
 
-        $nombrePropietario = mysqli_real_escape_string($conexion, $_POST['nombreP']);
+        $nombrePropietario = mysqli_real_escape_string($conexion, $_POST['nombre']);
         $apellidos = mysqli_real_escape_string($conexion, $_POST['apellidos']);
         $direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
         $telefono = mysqli_real_escape_string($conexion, $_POST['telefono']);

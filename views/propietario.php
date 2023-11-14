@@ -141,7 +141,7 @@
                                             <th><a href="" class="btn btn-warning">Editar</a></th>
                                             <th><form action="" method="POST" class="d-inline">
                                                 <!-- Aparece una notificación flotante -->
-                                            <input type="submit" onclick="return confirm('¿Deseas borrar este dato?')" value="Borrar" class="btn btn-danger">
+                                                <input type="submit" onclick="return confirm('¿Deseas borrar este dato?')" value="Borrar" class="btn btn-danger">
                                             </form>
                                             </th>                         
                                         </tr>
