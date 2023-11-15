@@ -33,26 +33,30 @@ if(isset($_POST['update_paciente']))
     $query_run = mysqli_query($conexion, $query2);
 
 
-    for($i=0; $i < count($_POST["tipoVacuna"]); $i++ ){
+    if(isset($_POST['tipoVacuna']))
+    {
 
-        $id_vacunacion = mysqli_real_escape_string($conexion, $_POST['idprogramavacunacion'][$i]);
-        $tipoVacu = mysqli_real_escape_string($conexion, $_POST['tipoVacuna'][$i]);            
-        $fechaVacu = $_POST['fechaProxima'][$i]; 
-        
-        if($id_vacunacion != null)
-        {
-            $query3 = "UPDATE programavacunacion SET tipoVacuna='$tipoVacu', fechaProxima='$fechaVacu'
-            WHERE idprogramaVacunacion='$id_vacunacion'";
+        for($i=0; $i < count($_POST["tipoVacuna"]); $i++ ){
 
-            $query_run = mysqli_query($conexion, $query3);
-        }else{
+            $id_vacunacion = mysqli_real_escape_string($conexion, $_POST['idprogramavacunacion'][$i]);
+            $tipoVacu = mysqli_real_escape_string($conexion, $_POST['tipoVacuna'][$i]);            
+            $fechaVacu = $_POST['fechaProxima'][$i]; 
+            
+            if($id_vacunacion != null)
+            {
+                $query3 = "UPDATE programavacunacion SET tipoVacuna='$tipoVacu', fechaProxima='$fechaVacu'
+                WHERE idprogramaVacunacion='$id_vacunacion'";
 
-            $query4 = "INSERT INTO programavacunacion (tipoVacuna,fechaProxima,idPacie)
-            VALUES ('$tipoVacu','$fechaVacu','$id_paciente')";
+                $query_run = mysqli_query($conexion, $query3);
+            }else{
 
-            $query_run = mysqli_query($conexion, $query4);
+                $query4 = "INSERT INTO programavacunacion (tipoVacuna,fechaProxima,idPacie)
+                VALUES ('$tipoVacu','$fechaVacu','$id_paciente')";
+
+                $query_run = mysqli_query($conexion, $query4);
+            }
+
         }
-
     }
     if($query_run)
     {
@@ -155,6 +159,29 @@ if(isset($_POST['eliminar_paciente']))
         exit(0);
     }
 }
+
+if(isset($_POST['eliminar_vacuna']))
+{    
+    $id_paciente = mysqli_real_escape_string($conexion, $_POST['idpaciente']);
+    $id_vacuna = mysqli_real_escape_string($conexion, $_POST['eliminar_vacuna']);
+
+    $query = "DELETE FROM programavacunacion WHERE idprogramavacunacion ='$id_vacuna' ";
+    $query_run = mysqli_query($conexion, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Student Deleted Successfully";
+        header("Location: editarPaciente.php?idpaciente=".$id_paciente);
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Student Not Deleted";
+        header("Location: editarPaciente.php");
+        exit(0);
+    }
+}
+
 
 ?>
 
