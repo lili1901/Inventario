@@ -186,6 +186,7 @@ require '../config/conexion.php';
                                                             items++;
                                                     
                                                             var html = "<tr>";
+                                                            html += "<input type='hidden' name='idprogramavacunacion[]'>";
                                                             html += "<td><input type='text' name='tipoVacuna[]'></td>";
                                                             html += "<td><input type='date' name='fechaProxima[]'></td>";
                                                             html += "<td><button type='button' onclick='deleteRow(this);'>Eliminar</button></td>"
@@ -216,7 +217,7 @@ require '../config/conexion.php';
                                                                                 <tbody id="tbodyVac">                                                                          
                                                                                 <?php
                                                                                     require("../config/conexion.php");
-                                                                                    $sql = $conexion -> query("SELECT va.tipoVacuna as vacuna,va.fechaProxima as proximaFecha
+                                                                                    $sql = $conexion -> query("SELECT va.idprogramavacunacion,va.tipoVacuna as vacuna,va.fechaProxima as proximaFecha
                                                                                     FROM paciente as pa 
                                                                                     INNER JOIN programavacunacion as va ON va.idPacie = pa.idpaciente
                                                                                     WHERE pa.idpaciente='$id_paciente'"); 
@@ -227,6 +228,7 @@ require '../config/conexion.php';
                                                                                         $fechaProxima[$i] = $resultado['proximaFecha']
                                                                                 ?> 
                                                                                     <tr>
+                                                                                        <input type="hidden" name="idprogramavacunacion[]" value="<?= $resultado['idprogramavacunacion']; ?>"> 
                                                                                         <td>
                                                                                             <input type='text' name='tipoVacuna[]' value="<?=$resultado['vacuna'];?>">
                                                                                         </td>

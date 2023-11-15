@@ -84,7 +84,7 @@
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">PROPIETARIO</h1>
+                        <h1 class="text-center">PROPIETARIO</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
                             <li class="breadcrumb-item active">Propietario</li>
@@ -102,8 +102,7 @@
                                             <th scope="col">Apellidos</th>
                                             <th scope="col">Dirección</th>
                                             <th scope="col">Telefóno</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Mascota</th>
+                                            <th scope="col">Email</th>                                          
                                             <th scope="col">Editar</th>
                                             <th scope="col">Eliminar</th>
                                         </tr> 
@@ -133,9 +132,7 @@
                                             <th scope="row"><?php echo $resultado ['apellidos']?></th>
                                             <th scope="row"><?php echo $resultado ['direccion']?></th>
                                             <th scope="row"><?php echo $resultado ['email']?></th>
-                                            <th scope="row"><?php echo $resultado ['telefono']?></th>
-                                            <th scope="row"><?php echo $resultado ['idpaciente']?></th>
-                                            
+                                            <th scope="row"><?php echo $resultado ['telefono']?></th>                                           
                                         
                                             <!-- Botones editar(amarillo) y eliminar(rojo) -->
                                             <th><a href="" class="btn btn-warning">Editar</a></th>
@@ -174,7 +171,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="../js/simple-datatables.min.js"></script>
         <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>

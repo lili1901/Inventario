@@ -84,10 +84,10 @@
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">VACUNACION</h1>
+                        <h1 class="text-center">VACUNACION</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
-                            <li class="breadcrumb-item active">vacunacion</li>
+                            <li class="breadcrumb-item active">Programa de vacunación</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -173,7 +173,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="../js/simple-datatables.min.js"></script>
         <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>

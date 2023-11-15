@@ -58,33 +58,33 @@ session_start();
                                Inicio
                             </a>
                             <div class="sb-sidenav-menu-heading">Tablas</div>
-                <!-- Categorias de productos barra lateral -->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Categorias
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="alimento.php">Alimentos</a>
-                                    <a class="nav-link" href="accesorios.php">Accesorios</a>
-                                    <a class="nav-link" href="medicamentos.php">Medicamentos</a>
-                                </nav>
+                            <!-- Categorias de productos barra lateral -->
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                    Categorias
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="alimento.php">Alimentos</a>
+                                        <a class="nav-link" href="accesorios.php">Accesorios</a>
+                                        <a class="nav-link" href="medicamentos.php">Medicamentos</a>
+                                    </nav>
+                                </div>
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        Citas próximas
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                                </a>
+                                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <a class="nav-link" href="paciente.php">Paciente</a>
+                                                <a class="nav-link" href="propietario.php">Propietario</a>
+                                                <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
+                                            </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Citas próximas
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="paciente.php">Paciente</a>
-                            <a class="nav-link" href="propietario.php">Propietario</a>
-                            <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
                         </nav>
                     </div>
-                </nav>
-            </div>
 
 
 
@@ -93,10 +93,10 @@ session_start();
           <div id="layoutSidenav_content">
              <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">PACIENTE</h1>
+                    <h1 class="text-center">PACIENTE</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="admin.html">Citas</a></li> 
-                        <li class="text-center">Pacientes</li>
+                        <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
+                        <li class="breadcrumb-item active">Paciente</li>
                     </ol>
                     
                     <div class="card mb-4">
@@ -159,8 +159,8 @@ session_start();
                                                 </a>
                                             </th>
                                             <th>
-                                                <form action="crudaccesorios.php" method="POST" class="d-inline">
-                                                    <button type="submit" name="eliminar_accesorio" value="<?=$resultado['idpaciente'];?>" class="btn btn-danger btn-sm">
+                                                <form action="crudPaciente.php" method="POST" class="d-inline">
+                                                    <button type="submit" name="eliminar_paciente" value="<?=$resultado['idpaciente'];?>" class="btn btn-danger btn-sm">
                                                         <i class="bi bi-pen">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>

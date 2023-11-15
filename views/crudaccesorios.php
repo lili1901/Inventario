@@ -81,7 +81,3 @@ if(isset($_POST['guardar_accesorio']))
     }
 }
 ?>
-
-
-
-

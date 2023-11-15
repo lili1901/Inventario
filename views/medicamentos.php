@@ -152,7 +152,7 @@
                                             
                                                 <!-- Botones editar(amarillo) y eliminar(rojo) -->
                                                 <th>
-                                                    <a href="editarmedicamentos.php?idmedicamento=<?= $resultado['idmedicamento']; ?>" class="btn btn-warning">
+                                                    <a href="editarmedicamentos.php?idmedicamento=<?= $resultado['idmedicamento']; ?>" class="btn btn-warning" style="padding: 0px;">
                                                         <button class="btn btn-warning btn-sm">                                         
                                                             <i class="bi bi-trash">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -204,7 +204,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="../js/simple-datatables.min.js"></script>
         <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>
