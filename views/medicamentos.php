@@ -19,7 +19,7 @@
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin.html">Administrador</a>
+            <a class="navbar-brand ps-3" href="admin.php">Administrador</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -48,7 +48,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Páginas</div>
-                            <a class="nav-link" href="admin.html">
+                            <a class="nav-link" href="admin.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
@@ -56,7 +56,7 @@
                 <!-- Categorias de productos barra lateral -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Categorias
+                                Categorías
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -84,6 +84,107 @@
             </div>
 
             <div id="layoutSidenav_content">
+            <?php
+            require("../config/conexion.php");
+
+            // Consulta SQL para obtener productos vencidos
+            $query_productos_vencidos = "SELECT * FROM medicamento WHERE fechaCaducidad < CURDATE()";
+            $resultado_productos_vencidos = mysqli_query($conexion, $query_productos_vencidos);
+
+            // Consulta SQL para obtener productos que les faltan 3 días para vencer
+            $query_productos_proximos_a_vencer = "SELECT * FROM medicamento WHERE fechaCaducidad = DATE_ADD(CURDATE(), INTERVAL 5 DAY)";
+            $resultado_productos_proximos_a_vencer = mysqli_query($conexion, $query_productos_proximos_a_vencer);
+
+            // Contar el número de productos vencidos
+            $num_productos_vencidos = mysqli_num_rows($resultado_productos_vencidos);
+
+            // Contar el número de productos que les faltan 3 días para vencer
+            $num_productos_proximos_a_vencer = mysqli_num_rows($resultado_productos_proximos_a_vencer);
+
+            // Mostrar notificaciones en php, javascript, css
+            if ($num_productos_vencidos > 0) {
+                echo "<style>
+                .elemento3 { 
+                    display: none;
+                        background-color: #f44336;
+                        color: white;
+                        padding: 1px;
+                        text-align: center;        
+                }
+            </style>";
+
+                echo "<div class='elemento3' id='myAlert3'>
+                Hay $num_productos_vencidos productos vencidos.
+            </div><script>
+            function mostrarAlerta() {
+                var alerta = document.getElementById('myAlert3');
+                alerta.style.display = 'block'; // Mostrar la alerta
+
+                // Programar el cierre después de 5 segundos (5000 milisegundos)
+
+                setTimeout(function() {
+                    alerta.style.display = 'none'; // Ocultar la alerta
+                }, 5000);
+            }
+
+            // Llamar a la función para mostrar la alerta automáticamente
+            mostrarAlerta();</script>";
+
+
+            }
+
+            if ($num_productos_proximos_a_vencer > 0) {
+            
+                echo "<style>
+                .elemento4 { 
+                    display: none;
+                        background-color: #FFA500;
+                        color: white;
+                        padding: 1px;
+                        text-align: center;        
+                }
+            </style>";
+
+                echo "<div class='elemento4' id='myAlert4'>
+                Hay $num_productos_proximos_a_vencer productos que les faltan 5 días para vencer.<br>
+            </div><script>function mostrarAlerta() {
+                var alerta = document.getElementById('myAlert4');
+                alerta.style.display = 'block'; // Mostrar la alerta
+
+                // Programar el cierre después de 5 segundos (5000 milisegundos)
+                setTimeout(function() {
+                    alerta.style.display = 'none'; // Ocultar la alerta
+                }, 5000);
+            }
+
+            // Llamar a la función para mostrar la alerta automáticamente
+            mostrarAlerta();</script>";
+            }
+            ?>
+
+
+
+                            
+                <!-- Script de JavaScript para actualizar la tabla automáticamente -->
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Agregamos jQuery para facilitar las solicitudes AJAX -->
+                <script class="tabla">
+                    // Función para actualizar la tabla
+                    function actualizarTabla() {
+                        $.ajax({
+                            url: '../views/registrar_vencimiento.php', // Ruta del archivo PHP que obtiene los datos de la base de datos
+                            type: 'GET',
+                            success: function(data) {
+                                $('#miTabla').html(data); // Actualiza el contenido de la tabla con los nuevos datos
+                            }
+                        });
+                    }
+
+                    // Llama a la función de actualización cada cierto intervalo de tiempo (por ejemplo, cada 5 segundos)
+                    setInterval(actualizarTabla, 5000); // 5000 milisegundos (5 segundos)
+                </script>
+
+
 
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
                 <main>

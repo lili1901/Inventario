@@ -1,7 +1,3 @@
-<?php
-session_start();
-require '../config/conexion.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,6 +11,7 @@ require '../config/conexion.php';
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 
@@ -72,6 +69,7 @@ require '../config/conexion.php';
                                     <a class="nav-link" href="medicamentos.php">Medicamentos</a>
                                 </nav>
                             </div>
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Citas próximas
@@ -91,88 +89,110 @@ require '../config/conexion.php';
 
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
 
-          <div id="layoutSidenav_content">
-                <main>
+            <div id="layoutSidenav_content">
+            <main>
                     <div class="container-fluid px-4">
-                        <h1 class="text-center">EDITAR ALIMENTOS</h1>
-                        <meta charset="utf-8">
+                        <h1 class="mt-4">DESCONTAR PRODUCTO</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.php">Administrador</a></li> 
-                            <li class="breadcrumb-item active">Editar alimentos</li>
+                            <li class="breadcrumb-item active">Accesorios</li>
                         </ol>
+                        <!-- cOMIENZA CÓDIGO PARA DESCONTAR-->
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            $lote = $_POST["Lote"];
+                            $cantidad_a_descontar = $_POST["cantidad_a_descontar"];
 
-                       
-                        <div class="card mb-4">
-                            <div class="col-md-4">
-                                <div class="card-body">
+                            // Conexión a la base de datos
+                            $conn = new mysqli("localhost", "root", "123456789", "veteri");
 
-                                    <?php
-                                    if(isset($_GET['idalimento']))
-                                    {
-                                        $id_alimento = mysqli_real_escape_string($conexion, $_GET['idalimento']);
-                                        $query = "SELECT * FROM alimento WHERE idalimento='$id_alimento'";
-                                        $query_run = mysqli_query($conexion, $query);
+                            if ($conn->connect_error) {
+                                die("Error de conexión a la base de datos: " . $conn->connect_error);
+                            }
 
-                                        if(mysqli_num_rows($query_run) > 0)
-                                        {
-                                            $resultado = mysqli_fetch_array($query_run);
-                                    ?>
-                                        <form action="crudalimento.php" method="POST">
-                                                <input type="hidden" name="idalimento" value="<?= $resultado['idalimento']; ?>">
-                                                <div class="mb-4">
-                                                    <label>Lote</label>
-                                                    <input type="text" name="lote" value="<?=$resultado['lote'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>Nombre</label>
-                                                    <input type="text" name="nombre" value="<?=$resultado['nombre'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>Especie</label>
-                                                    <input type="text" name="especie" value="<?=$resultado['especie'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>Precio</label>
-                                                    <input type="text" name="precio" value="<?=$resultado['precio'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>Cantidad</label>
-                                                    <input type="text" name="cantidad" value="<?=$resultado['cantidad'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>Edad</label>
-                                                    <input type="text" name="edad" value="<?=$resultado['edad'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>Fecha de caducidad</label>
-                                                    <input type="text" name="fechaCaducidad" value="<?=$resultado['fechaCaducidad'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label>Fecha de entrada</label>
-                                                    <input type="text" name="fechaEntrada" value="<?=$resultado['fechaEntrada'];?>" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <button type="submit" name="update_alimento" class="btn btn-primary">
-                                                        Actualizar
-                                                    </button>
-                                                </div>
+                            // Consulta SQL para obtener la cantidad disponible del lote
+                            $sql = "SELECT cantidad FROM alimento WHERE lote = '$lote'";
+                            $result = $conn->query($sql);
+                            $query_run = mysqli_query($conn, $sql);
 
-                                        </form>
-                                        <?php
-                                        }
-                                        else
-                                        {
-                                            echo "<h4>No Such Id Found</h4>";
-                                        }
-                                        }
-                                        ?>
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $cantidad_disponible = $row['cantidad'];
+                                
+                                if ($cantidad_disponible >= $cantidad_a_descontar) {
+                                    // Realizar el descuento
+                                    $nueva_cantidad = $cantidad_disponible - $cantidad_a_descontar;
+                                    
+                                    // Actualizar la cantidad en la base de datos
+                                    $update_sql = "UPDATE alimento SET cantidad = $nueva_cantidad WHERE lote = '$lote'";    
+                                    
+                                    if ($conn->query($update_sql) === TRUE) {  
+                                        echo "
+                                        Descuento exitoso. Cantidad restante: $nueva_cantidad "  ;
+                                    } else {
+                                        echo "Error al actualizar la cantidad: " . $conn->error;
+                                    }
+                                } else {
+                                    echo "No hay suficiente cantidad disponible para descontar.";
+                                }
+                            } else {
+                                echo "El lote no existe en la base de datos.";
+                            }
+                            }
+                            // Cierra la conexión a la base de datos
+                            ?>
 
+
+
+                                    
+                        <div class="card mb-4">                        
+                            <div class="card-body">
+                                <div id="alertaCantidad" class="oculto"></div>
+                                    <form method="POST" id="formularioDescontar">
+                                        <div class="container">
+                                            <div class="row row-cols-auto">
+
+                                            <div class="mb-3">
+                                                    <label for="Lote">Lote:</label>
+                                                    <input type="text" name="Lote" id="Lote" required><br>
+                                                </div>  
+                                                <div class="mb-3">
+                                                    <label for="cantidad_a_descontar">Cantidad a descontar:</label>
+                                                    <input type="number" name="cantidad_a_descontar" id="cantidad_a_descontar" required><br>
+                                                </div>                                        
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="submit" value="Descontar Cantidad">   
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
+                    <!--<script>
+                        $('#formularioDescontar').submit(function(event) {
+                            event.preventDefault(); // Evita la recarga de la página
 
+                            $.ajax({
+                                url: 'crudAgotar.php', // Ruta al archivo PHP que procesa el formulario
+                                type: 'POST',
+                                data: $(this).serialize(),
+                                success: function(data) {
+                                    if (data !== "No hay suficiente cantidad disponible.") {
+                                        // Actualiza el contenido en la página
+                                        $('#alertaCantidad').text('Cantidad disponible: ' + data);
+                                    } else {
+                                        alert(data);
+                                    }
+                                },
+                                error: function() {
+                                    $('#alertaCantidad').text('Error al actualizar la cantidad.');
+                                }
+                            });
+                        });
+                    </script> -->                
 
                 <!-- Finaliza el contenido central de la pagina -->
                 <footer class="py-4 bg-light mt-auto">

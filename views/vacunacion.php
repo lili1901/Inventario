@@ -16,7 +16,7 @@
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin.html">Administrador</a>
+            <a class="navbar-brand ps-3" href="admin.php">Administrador</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -45,7 +45,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Páginas</div>
-                            <a class="nav-link" href="admin.html">
+                            <a class="nav-link" href="admin.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
@@ -53,7 +53,7 @@
                 <!-- Categorias de productos barra lateral -->
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Categorias
+                        Categorías
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -86,7 +86,7 @@
                     <div class="container-fluid px-4">
                         <h1 class="text-center">VACUNACION</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
+                            <li class="breadcrumb-item"><a href="admin.php">Administrador</a></li> 
                             <li class="breadcrumb-item active">Programa de vacunación</li>
                         </ol>
                         <div class="card mb-4">

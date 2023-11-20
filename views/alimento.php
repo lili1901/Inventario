@@ -18,7 +18,7 @@
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin.html">Administrador</a>
+            <a class="navbar-brand ps-3" href="admin.php">Administrador</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -47,7 +47,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Páginas</div>
-                            <a class="nav-link" href="admin.html">
+                            <a class="nav-link" href="admin.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
@@ -55,7 +55,7 @@
                 <!-- Categorias de productos barra lateral -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Categorias
+                                Categorías
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -83,13 +83,110 @@
             </div>
 
             <div id="layoutSidenav_content">
+            <?php   
+            require("../config/conexion.php");
+            // Consulta SQL para obtener productos vencidos
+            $query_productos_vencidos = "SELECT * FROM alimento WHERE fechaCaducidad < CURDATE()";
+            $resultado_productos_vencidos = mysqli_query($conexion, $query_productos_vencidos);
+
+            // Consulta SQL para obtener productos que les faltan 3 días para vencer
+            $query_productos_proximos_a_vencer = "SELECT * FROM alimento WHERE fechaCaducidad = DATE_ADD(CURDATE(), INTERVAL 5 DAY)";
+            $resultado_productos_proximos_a_vencer = mysqli_query($conexion, $query_productos_proximos_a_vencer);
+
+            // Contar el número de productos vencidos
+            $num_productos_vencidos = mysqli_num_rows($resultado_productos_vencidos);
+
+            // Contar el número de productos que les faltan 3 días para vencer
+            $num_productos_proximos_a_vencer = mysqli_num_rows($resultado_productos_proximos_a_vencer);
+
+            // Mostrar notificaciones en php, javascript, css
+            if ($num_productos_vencidos > 0) {
+                echo "<style>
+                .elemento { 
+                    display: none;
+                        background-color: #f44336;
+                        color: white;
+                        padding: 15px;
+                        text-align: center;        
+                }
+            </style>";
+
+                echo "<div class='elemento' id='myAlert'>
+                Hay $num_productos_vencidos productos vencidos.
+            </div><script>
+            function mostrarAlerta() {
+                var alerta = document.getElementById('myAlert');
+                alerta.style.display = 'block'; // Mostrar la alerta
+
+                // Programar el cierre después de 5 segundos (5000 milisegundos)
+
+                setTimeout(function() {
+                    alerta.style.display = 'none'; // Ocultar la alerta
+                }, 5000);
+            }
+
+            // Llamar a la función para mostrar la alerta automáticamente
+            mostrarAlerta();</script>";
+
+
+            }
+
+            if ($num_productos_proximos_a_vencer > 0) {
+
+                echo "<style>
+                .elemento2 { 
+                    display: none;
+                        background-color: #FFA500;
+                        color: white;
+                        padding: 15px;
+                        text-align: center;        
+                }
+            </style>";
+
+                echo "<div class='elemento2' id='myAlert2'>
+                Hay $num_productos_proximos_a_vencer productos que les faltan 5 días para vencer.<br>
+            </div><script>function mostrarAlerta() {
+                var alerta = document.getElementById('myAlert2');
+                alerta.style.display = 'block'; // Mostrar la alerta
+
+                // Programar el cierre después de 5 segundos (5000 milisegundos)
+                setTimeout(function() {
+                    alerta.style.display = 'none'; // Ocultar la alerta
+                }, 5000);
+            }
+
+            // Llamar a la función para mostrar la alerta automáticamente
+            mostrarAlerta();</script>";
+            }
+            $hoy = date('Y-m-d');
+            $consulta = "SELECT nombre, fechaCaducidad FROM alimento WHERE fechaCaducidad >= '$hoy'
+                        UNION
+                        SELECT nombre, fechaCaducidad FROM medicamento WHERE fechaCaducidad >= '$hoy'";
+            $resultado = $conexion->query($consulta);
+
+            if ($resultado->num_rows > 0) {
+                echo '<script>';
+                echo '("Productos a punto de caducar: \n\n';
+                while ($fila = $resultado->fetch_assoc()) {
+                    echo $fila['nombre'] . ' - Caduca el ' . $fila['fechaCaducidad'] . '\n';
+                }
+                echo '");';
+                echo '</script>';
+            } else {
+                echo 'No hay productos a punto de caducar.';
+            }
+
+            $conexion->close();
+
+            ?>
+
 
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="text-center">ALIMENTOS</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> 
+                            <li class="breadcrumb-item"><a href="admin.php">Administrador</a></li> 
                             <li class="breadcrumb-item active">Alimentos</li>
                         </ol>
                         <div class="card mb-4">
@@ -100,6 +197,7 @@
                                     <a href="agregarAlimento.php" class="btn btn-success float-end">Agregar</a>
                                 </h4>
                             </div>
+                            <a href="restarProducto.php" class="btn btn-success float-end">Descontar</a>
                             <div class="card-body">
 
                                 <table id="datatablesSimple">
