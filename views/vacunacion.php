@@ -118,16 +118,12 @@
                     },
                     selectable: true,
                     selectHelper: true,
-                    
-
-
                     editable: true,
-                    eventClick: function(data, event, view) {
-                        var tooltip = '<div class="tooltipevent" style="width:100px;height:100px;background:#ccc;position:absolute;z-index:10001;">' + event.title + '</div>';
-                        var content = '<h3>'+data.title+'</h3>' + 
-                            '<p><b>Start:</b> '+data.start+'<br />' + 
-                            (data.end && '<p><b>End:</b> '+data.end+'</p>' || '');
-
+                    eventClick: function(event) {
+                        if (event.url) {
+                            window.open(event.url, '_self');
+                            return false;
+                        }
                     }
                 });
             });
