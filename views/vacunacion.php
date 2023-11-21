@@ -8,9 +8,160 @@
         <meta name="author" content="" />
         <title>Static Navigation - SB Admin</title>
 
-       <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../css/fullcalendar/fullcalendar.min.css" />
+        <script src="../js/fullcalendar/lib/jquery.min.js"></script>
+        <script src="../js/fullcalendar/lib/moment.min.js"></script>
+        <script src="../js/fullcalendar/fullcalendar.min.js"></script>
+        <script src="../js/fullcalendar/locale-all.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+        body {
+            font-family: Arial;
+        }
+        h1#demo-title {
+            margin: 30px 0px 80px 0px;
+            text-align: center;
+        }
+
+        #event-action-response {
+            background-color: #5ce4c6;
+            border: #57d4b8 1px solid;
+            padding: 10px 20px;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            color: #333;
+            display: none;
+        }
+
+        .fc-day-grid-event .fc-content {
+            background: #586e75;
+            color: #FFF;
+        }
+
+        .fc-event, .fc-event-dot {
+            background-color: #586e75;
+        }
+
+        .fc-event {
+            border: 1px solid #485b61;
+        }
+        </style>
+
+        <script>
+           $(document).ready(function() {
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+                var eventsL = [];
+                eventsL = [
+                    {
+                    "title": "Event 1",
+                    "start": "2023-11-05",
+                    "end": "2023-11-05"
+                    },
+                    {
+                    "title": "Event 2",
+                    "start": "2023-11-08",
+                    "end": "2023-11-10"
+                    }
+                ]
+
+
+                var calendar = $('#calendar').fullCalendar({
+                    locale: 'es',
+                    editable: true,
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+
+
+                    events: 'getEventList.php',
+
+
+                    eventRender: function(event, element, view) {
+                        if (event.allDay === 'true') {
+                        event.allDay = true;
+                        } else {
+                        event.allDay = false;
+                        }
+                    },
+                    selectable: true,
+                    selectHelper: true,
+                    select: function(start, end, allDay) {
+                        var title = prompt('Event Title:');
+
+
+                        if (title) {
+                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+                        $.ajax({
+                            url: 'add_events.php',
+                            data: 'title='+ title+'&start='+ start +'&end='+ end,
+                            type: "POST",
+                            success: function(json) {
+                            alert('Added Successfully');
+                            }
+                        });
+                        calendar.fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        },
+                        true
+                        );
+                        }
+                        calendar.fullCalendar('unselect');
+                    },
+
+
+                    editable: true,
+                    eventDrop: function(event, delta) {
+                        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                        $.ajax({
+                            url: 'update_events.php',
+                            data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+                            type: "POST",
+                            success: function(json) {
+                                alert("Updated Successfully");
+                            }
+                        });
+                    },
+                    eventClick: function(event) {
+                        var decision = confirm("Do you really want to do that?"); 
+                        if (decision) {
+                        $.ajax({
+                            type: "POST",
+                            url: "delete_event.php",
+                            data: "&id=" + event.id,
+                            success: function(json) {
+                                $('#calendar').fullCalendar('removeEvents', event.id);
+                                alert("Updated Successfully");}
+                        });
+                        }
+                    },
+                    eventResize: function(event) {
+                        var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
+                        var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+                        $.ajax({
+                            url: 'update_events.php',
+                            data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+                            type: "POST",
+                            success: function(json) {
+                            alert("Updated Successfully");
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
    
     </head>
     <body>
@@ -70,8 +221,7 @@
                     </a>
                     <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="paciente.php">Paciente</a>
-                            <a class="nav-link" href="propietario.php">Propietario</a>
+                            <a class="nav-link" href="paciente.php">Paciente</a>                            
                             <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
                         </nav>
                     </div>
@@ -91,66 +241,8 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <table id="datatablesSimple">
-
-                                    <thead>
-            
-                                    <!-- Encabezados de la tabla -->
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">ID Paciente</th>
-                                            <th scope="col">Vacuna</th>
-                                            <th scope="col">Diluente (nombre de vacuna)</th>
-                                            <th scope="col">Fecha de vacunación </th>
-                                            <th scope="col">Fecha próxima de vacunación</th>
-                                            <th scope="col">Nombre del MVZ</th>
-                                            <th scope="col">Editar</th>
-                                            <th scope="col">Eliminar</th>
-                                        </tr> 
-            
-                                        
-                                    </thead>
-            
-                                    <tbody> <!--Contenido de la tabla  -->
-            
-                                        <?php
-                                      
-            
-                                        // Inicia sentencia php para llamar y obtener los datos de la tabla alimento de la base de datos con una sentencia SQL
-            
-                                        require("../config/conexion.php");
-                                        $sql = $conexion -> query("SELECT * FROM programavacunacion");
-            
-                                        while ($resultado = $sql ->fetch_assoc()) {
-                                           
-                                        ?>
-            
-                                        
-                                            <tr>
-                                                <!-- Muestra en pantalla la tabla html los datos actuales de la base de datos -->
-                                            <th scope="row"><?php echo $resultado ['idprogramaVacunacion']?></th>
-                                            <th scope="row"><?php echo $resultado ['idpaciente']?></th>
-                                            <th scope="row"><?php echo $resultado ['diluente']?></th>
-                                            <th scope="row"><?php echo $resultado ['mvz']?></th>
-                                            <th scope="row"><?php echo $resultado ['tipoVacuna']?></th>
-                                            <th scope="row"><?php echo $resultado ['fechaVacunacion']?></th>
-                                            <th scope="row"><?php echo $resultado ['fechaProxima']?></th>
-                                            
-                                        
-                                            <!-- Botones editar(amarillo) y eliminar(rojo) -->
-                                            <th><a href="" class="btn btn-warning">Editar</a></th>
-                                            <th><form action="" method="POST" class="d-inline">
-                                                <!-- Aparece una notificación flotante -->
-                                            <input type="submit" onclick="return confirm('¿Deseas borrar este dato?')" value="Borrar" class="btn btn-danger">
-                                            </form>
-                                            </th>                         
-                                        </tr>
-            
-                                    <?php  }  // Finaliza php ?>
-            
-                                    </tbody> 
-            
-                                </table><!-- Finaliza tabla html -->
+                                <div id="event-action-response"></div>
+                                <div id="calendar"></div>
                             </div>
                         </div>
                     </div>

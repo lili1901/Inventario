@@ -129,8 +129,6 @@
 
             // Llamar a la función para mostrar la alerta automáticamente
             mostrarAlerta();</script>";
-
-
             }
 
             if ($num_productos_proximos_a_vencer > 0) {

@@ -25,4 +25,4 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-$("#fecha" ).datepicker( "option", "dateFormat", "dd-mm-yy" ); 
+//$("#fecha" ).datepicker( "option", "dateFormat", "dd-mm-yy" ); 
