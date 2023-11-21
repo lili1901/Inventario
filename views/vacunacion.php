@@ -104,7 +104,10 @@
                         var eventid = event.id;
                         var layer = "<div id='events-layer'  style='position:absolute; background-color:#eee5e6; top:"+ jsEvent.pageY +"px; left:"+ jsEvent.pageX +"px; z-index:9999;'>"
                             +"<h3 class='popover-header' style='font-weight: bold;'>"+event.title+"</h3>"
-                            +"<div class='popover-body'>"+event.description+"</div>"
+                            +"<div class='popover-body'>"
+                            +"<h6>"+event.propietario+"</h6>"
+                            +"<h6>"+event.paciente+"</h6>"
+                            +"</div>"
                             +"</div>";
                         $("body").append(layer);
 
