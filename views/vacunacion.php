@@ -35,17 +35,45 @@
             display: none;
         }
 
-        .fc-day-grid-event .fc-content {
+        /*.fc-day-grid-event .fc-content {
             background: #586e75;
             color: #FFF;
-        }
+        }*/
 
         .fc-event, .fc-event-dot {
             background-color: #586e75;
         }
 
         .fc-event {
-            border: 1px solid #485b61;
+            border: 1px solid #485b6114;
+        }
+        .popover-header {
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0;
+            font-size: 1rem;
+            color: inherit;
+            background-color: #ddd;
+            border-bottom: 1px solid #ebebeb;
+            border-top-left-radius: calc(0.3rem - 1px);
+            border-top-right-radius: calc(0.3rem - 1px);
+        }
+        .popover-body {
+            padding: 0.5rem 0.75rem;
+            color: #212529;
+            background-color: #f7f7f7;
+        }
+        .popover  {
+            position: absolute;
+            transform: translate3d(439px, 3357px, 0px);
+            top: 0px;
+            left: 0px;
+            will-change: transform;
+        }
+        .fade.show {
+            opacity: 1;
+        }
+        .bs-popover-right {
+            margin-left: 0.5rem;
         }
         </style>
 
@@ -55,20 +83,6 @@
                 var d = date.getDate();
                 var m = date.getMonth();
                 var y = date.getFullYear();
-                var eventsL = [];
-                eventsL = [
-                    {
-                    "title": "Event 1",
-                    "start": "2023-11-05",
-                    "end": "2023-11-05"
-                    },
-                    {
-                    "title": "Event 2",
-                    "start": "2023-11-08",
-                    "end": "2023-11-10"
-                    }
-                ]
-
 
                 var calendar = $('#calendar').fullCalendar({
                     locale: 'es',
@@ -78,11 +92,7 @@
                         center: 'title',
                         right: 'month,agendaWeek,agendaDay'
                     },
-
-
                     events: 'getEventList.php',
-
-
                     eventRender: function(event, element, view) {
                         if (event.allDay === 'true') {
                         event.allDay = true;
@@ -90,74 +100,31 @@
                         event.allDay = false;
                         }
                     },
+                    eventMouseover: function(event, jsEvent, view){
+                        var eventid = event.id;
+                        var layer = "<div id='events-layer'  style='position:absolute; background-color:#eee5e6; top:"+ jsEvent.pageY +"px; left:"+ jsEvent.pageX +"px; z-index:9999;'>"
+                            +"<h3 class='popover-header' style='font-weight: bold;'>"+event.title+"</h3>"
+                            +"<div class='popover-body'>"+event.description+"</div>"
+                            +"</div>";
+                        $("body").append(layer);
+
+                        console.log(jsEvent);
+                    },
+                    eventMouseout: function(calEvent, domEvent) {
+                        $("#events-layer").remove();
+                    },
                     selectable: true,
                     selectHelper: true,
-                    select: function(start, end, allDay) {
-                        var title = prompt('Event Title:');
-
-
-                        if (title) {
-                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-                        $.ajax({
-                            url: 'add_events.php',
-                            data: 'title='+ title+'&start='+ start +'&end='+ end,
-                            type: "POST",
-                            success: function(json) {
-                            alert('Added Successfully');
-                            }
-                        });
-                        calendar.fullCalendar('renderEvent',
-                        {
-                            title: title,
-                            start: start,
-                            end: end,
-                            allDay: allDay
-                        },
-                        true
-                        );
-                        }
-                        calendar.fullCalendar('unselect');
-                    },
+                    
 
 
                     editable: true,
-                    eventDrop: function(event, delta) {
-                        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-                        $.ajax({
-                            url: 'update_events.php',
-                            data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
-                            type: "POST",
-                            success: function(json) {
-                                alert("Updated Successfully");
-                            }
-                        });
-                    },
-                    eventClick: function(event) {
-                        var decision = confirm("Do you really want to do that?"); 
-                        if (decision) {
-                        $.ajax({
-                            type: "POST",
-                            url: "delete_event.php",
-                            data: "&id=" + event.id,
-                            success: function(json) {
-                                $('#calendar').fullCalendar('removeEvents', event.id);
-                                alert("Updated Successfully");}
-                        });
-                        }
-                    },
-                    eventResize: function(event) {
-                        var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
-                        $.ajax({
-                            url: 'update_events.php',
-                            data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
-                            type: "POST",
-                            success: function(json) {
-                            alert("Updated Successfully");
-                            }
-                        });
+                    eventClick: function(data, event, view) {
+                        var tooltip = '<div class="tooltipevent" style="width:100px;height:100px;background:#ccc;position:absolute;z-index:10001;">' + event.title + '</div>';
+                        var content = '<h3>'+data.title+'</h3>' + 
+                            '<p><b>Start:</b> '+data.start+'<br />' + 
+                            (data.end && '<p><b>End:</b> '+data.end+'</p>' || '');
+
                     }
                 });
             });
