@@ -70,8 +70,7 @@
                     </a>
                     <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="paciente.php">Paciente</a>
-                            <a class="nav-link" href="propietario.php">Propietario</a>
+                            <a class="nav-link" href="paciente.php">Paciente y vacunas</a>
                             <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
                         </nav>
                     </div>

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Gesto de inventario</title>
+        <title>Gestor de inventario</title>
  
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
@@ -75,8 +75,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="paciente.php">Paciente</a>
-                                    <a class="nav-link" href="propietario.php">Propietario</a>
+                                    <a class="nav-link" href="paciente.php">Paciente y vacunas</a>
                                     <a class="nav-link" href="vacunacion.php">Programa de vacunación</a>
                                 </nav>
                             </div>

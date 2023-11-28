@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Static Navigation - SB Admin</title>
+        <title>Gestor de inventario</title>
 
         <link rel="stylesheet" href="../css/fullcalendar/fullcalendar.min.css" />
         <script src="../js/fullcalendar/lib/jquery.min.js"></script>
@@ -200,7 +200,7 @@
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="text-center">VACUNACION</h1>
+                        <h1 class="text-center">VACUNACIÓN</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.php">Administrador</a></li> 
                             <li class="breadcrumb-item active">Programa de vacunación</li>
