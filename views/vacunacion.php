@@ -107,6 +107,8 @@
                             +"<div class='popover-body'>"
                             +"<h6>"+event.propietario+"</h6>"
                             +"<h6>"+event.paciente+"</h6>"
+                            +"<h6>    </h6>"
+                            +"<h6>    Da click para enviar notificación   </h6>"
                             +"</div>"
                             +"</div>";
                         $("body").append(layer);
@@ -119,11 +121,32 @@
                     selectable: true,
                     selectHelper: true,
                     editable: true,
-                    eventClick: function(event) {
-                        if (event.url) {
-                            window.open(event.url, '_self');
-                            return false;
-                        }
+                    eventClick: function (event) {
+                        // Handle event click here
+                        var eventId = event.telefono;
+                        var date = event.start;
+                        var paciente = event.paciente;
+                        var vacuna = event.title;
+
+                        // Make an AJAX request to execute PHP code
+                        // You can use libraries like jQuery or fetch API
+                        // Here, I'll provide a simple example using fetch
+
+                        fetch('sendMEssageWp.php', {
+                            method: 'POST',
+                            body: JSON.stringify({ eventId: eventId, date: date, paciente: paciente, vacuna: vacuna }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Handle the response from the server if needed
+                            console.log(data);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                     }
                 });
             });
