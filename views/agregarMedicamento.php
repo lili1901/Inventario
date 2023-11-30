@@ -16,9 +16,9 @@
 
     </head>
     <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark bg-img">     
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin.html">Administrador</a>
+            
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -54,7 +54,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
-                            <div class="sb-sidenav-menu-heading">Tablas</div>
                 <!-- Categorias de productos barra lateral -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -99,7 +98,7 @@
                     
                     <div class="card mb-4">
                         <div class="card-body">
-                        <form action="crudmedicamentos.php" method="POST">
+                        <form action="crudmedicamentos.php" method="POST" class="row g-3 needs-validation">
                             <div class="container">
                                 <div class="row row-cols-auto">
 

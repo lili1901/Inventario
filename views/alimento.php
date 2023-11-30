@@ -16,9 +16,9 @@
 
     </head>
     <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark bg-img">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin.php">Administrador</a>
+            
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -51,7 +51,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
-                            <div class="sb-sidenav-menu-heading">Tablas</div>
                 <!-- Categorias de productos barra lateral -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -189,20 +188,20 @@
                             <li class="breadcrumb-item active">Alimentos</li>
                         </ol>
                         <div class="card mb-4">
-
                             <div class="card-header">
-
                                 <h4>
                                     <a href="agregarAlimento.php" class="btn btn-success float-end">Agregar</a>
                                 </h4>
                             </div>
-                            <a href="restarProducto.php" class="btn btn-success float-end">Descontar</a>
+                            <div class="card-header">
+                                <h4>
+                                    <a href="restarProducto.php" class="btn btn-secondary float-end">Descontar</a>
+                                </h4>
+                            </div>
+                            
                             <div class="card-body">
-
                                 <table id="datatablesSimple">
-
-                                    <thead>
-            
+                                    <thead>            
                                     <!-- Encabezados de la tabla -->
                                         <tr>
                                             <th scope="col">Id</th>
@@ -216,15 +215,10 @@
                                             <th scope="col">Fecha de entrada</th>                                            
                                             <th scope="col">Editar</th>
                                             <th scope="col">Eliminar</th>
-                                        </tr> 
-            
-                                        
-                                    </thead>
-            
-                                    <tbody> <!--Contenido de la tabla  -->
-            
-                                        <?php
-                                      
+                                        </tr>     
+                                    </thead>            
+                                    <tbody> <!--Contenido de la tabla  -->            
+                                        <?php                                      
             
                                         // Inicia sentencia php para llamar y obtener los datos de la tabla alimento de la base de datos con una sentencia SQL
             

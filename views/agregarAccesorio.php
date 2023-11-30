@@ -16,9 +16,9 @@
 
     </head>
     <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark bg-img">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin.php">Administrador</a>
+            
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -54,7 +54,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
-                            <div class="sb-sidenav-menu-heading">Tablas</div>
                 <!-- Categorias de productos barra lateral -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -81,7 +80,97 @@
                         </div>
                 </nav>
             </div>
+            <script>
+                (function() {
+                    'use strict'
 
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                    .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                    })
+                })
+
+                function formatNumber(n) {
+                    // format number 1000000 to 1,234,567
+                    return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+
+                function formatCurrency(input, currency, blur) {
+                    // appends $ to value, validates decimal side
+                    // and puts cursor back in right position.
+                    // get input value
+                    var input_val = input.value;
+                    // don't validate empty input
+                    if (input_val === "") {
+                    return;
+                    }
+
+                    // original length
+                    var original_len = input_val.length;
+
+                    // initial caret position
+                    var caret_pos = input.selectionStart;
+
+                    // check for decimal
+                    if (input_val.indexOf(".") >= 0) {
+                    // get position of first decimal
+                    // this prevents multiple decimals from
+                    // being entered
+                    var decimal_pos = input_val.indexOf(".");
+
+                    // split number by decimal point
+                    var left_side = input_val.substring(0, decimal_pos);
+                    var right_side = input_val.substring(decimal_pos);
+
+                    // add commas to left side of number
+                    left_side = formatNumber(left_side);
+
+                    // validate right side
+                    right_side = formatNumber(right_side);
+
+                    // On blur make sure 2 numbers after decimal
+                    if (blur === "blur") {
+                        right_side += "00";
+                    }
+
+                    // Limit decimal to only 2 digits
+                    right_side = right_side.substring(0, 2);
+
+                    // join number by .
+                    input_val = currency + left_side + "." + right_side;
+                    } else {
+                    // no decimal entered
+                    // add commas to number
+                    // remove all non-digits
+                    input_val = formatNumber(input_val);
+                    input_val = currency + input_val;
+
+                    // final formatting
+                    if (blur === "blur") {
+                        input_val += ".00";
+                    }
+                    }
+
+                    // send updated string to input
+                    input.value = input_val;
+
+                    // put caret back in the right position
+                    var updated_len = input_val.length;
+                    caret_pos = updated_len - original_len + caret_pos;
+                    input.setSelectionRange(caret_pos, caret_pos);
+                }
+            </script>
 
 
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
@@ -99,33 +188,48 @@
                     
                     <div class="card mb-4">
                         <div class="card-body">
-                        <form action="crudaccesorios.php" method="POST">
+                        <form action="crudaccesorios.php" method="POST" class="row g-3 needs-validation">
                             <div class="container">
                                 <div class="row row-cols-auto">
 
-                                    <div class="mb-3">
-                                        <label>Nombre</label>
-                                        <input type="text" name="nombre" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                        <input type="text" name="nombre" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Cantidad</label>
-                                        <input type="text" name="cantidad" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="cantidad" class="form-label">Cantidad</label>
+                                        <input type="text" name="cantidad" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>                           
-                                    <div class="mb-3">
-                                        <label>Tamaño</label>
-                                        <input type="text" name="tamanio" class="form-control" >
+                                    <div class="col-md-4">
+                                        <label for="tamanio" class="form-label">Tamaño</label>
+                                        <input type="text" name="tamanio" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Precio</label>
-                                        <input type="text" name="precio" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="precio" class="form-label">Precio</label>
+                                        <input type="text" name="precio" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Figura</label>
-                                        <input type="text" name="figura" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="figura" class="form-label">Figura</label>
+                                        <input type="text" name="figura" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Fecha de entrada</label>                                        
-                                        <input type="date" name="fechaEntrada" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="fechaEntrada" class="form-label">Fecha de entrada</label>                                        
+                                        <input type="date" name="fechaEntrada"class="form-control is-invalid" required>
                                     </div>
 
                                 </div>

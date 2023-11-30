@@ -11,11 +11,10 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark bg-img">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin.php">Administrador</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Sidebar Toggle
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>-->
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <!-- <div class="input-group">
@@ -47,7 +46,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Inicio
                             </a>
-                            <div class="sb-sidenav-menu-heading">Tablas</div>
                 <!-- Categorias de productos barra lateral -->
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -236,21 +234,15 @@
                 <!-- Inicia contenido de la pagina del perfil del administrador -->
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Perfil administrador</h1>
                         <ol class="breadcrumb mb-4">
                             <!-- <li class="breadcrumb-item"><a href="admin.html">Administrador</a></li> -->
-                            <li class="breadcrumb-item active">Administrador</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <p class="mb-0">
-                                    Bienvenido
-                                   
-                                      </p>
+                            <div class="bg-img2"></div>
                             </div>
                         </div>
                         <div style="height: 100vh"></div>
-                        <div class="card mb-4"><div class="card-body">Hola</div></div>
                     </div>
                 </main>
 
