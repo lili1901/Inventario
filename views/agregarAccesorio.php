@@ -215,7 +215,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="precio" class="form-label">Precio</label>
-                                        <input type="text" name="precio" class="form-control is-invalid" required>
+                                        <input type="text" name="precio" class="form-control is-invalid" placeholder="$ " required>
                                         <div class="invalid-feedback">
                                              Campo requerido
                                         </div>

@@ -223,8 +223,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="precio" class="form-label">Precio</label>
-                                        <input id="precio" type="text" name="precio" class="form-control  is-invalid" 
-                                            onBlur="formatCurrency(this, '$ ', 'blur');" onkeyup="formatCurrency(this, '$ ');" placeholder="$ " required>
+                                        <input id="precio" type="text" name="precio" class="form-control  is-invalid" placeholder="$ " required>
                                         <div class="invalid-feedback">
                                              Campo requerido
                                         </div>

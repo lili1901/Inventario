@@ -102,33 +102,54 @@
                             <div class="container">
                                 <div class="row row-cols-auto">
 
-                                    <div class="mb-3">
-                                        <label>Lote</label>
-                                        <input type="text" name="lote" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="lote" class="form-label">Lote</label>
+                                        <input type="text" name="lote" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>  
-                                    <div class="mb-3">
-                                        <label>Nombre</label>
-                                        <input type="text" name="nombre" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                        <input type="text" name="nombre" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>                                         
-                                    <div class="mb-3">
-                                        <label>Vía de administración</label>
-                                        <input type="text" name="viaadmon" class="form-control" >
+                                    <div class="col-md-4">
+                                        <label for="viaadmon" class="form-label">Vía de administración</label>
+                                        <input type="text" name="viaadmon" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Precio</label>
-                                        <input type="text" name="precio" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="precio" class="form-label">Precio</label>
+                                        <input type="text" name="precio" class="form-control is-invalid" placeholder="$ " required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Cantidad</label>
-                                        <input type="text" name="cantidad" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="cantidad" class="form-label">Cantidad</label>
+                                        <input type="text" name="cantidad" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Fecha de caducidad</label>                                        
-                                        <input type="date" name="fechaCaducidad" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="fechaCaducidad" class="form-label">Fecha de caducidad</label>                                        
+                                        <input type="date" name="fechaCaducidad" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Fecha de entrada</label>                                        
-                                        <input type="date" name="fechaEntrada" class="form-control">
+                                    <div class="col-md-4">
+                                        <label for="fechaEntrada" class="form-label">Fecha de entrada</label>                                        
+                                        <input type="date" name="fechaEntrada" class="form-control is-invalid" required>
+                                        <div class="invalid-feedback">
+                                             Campo requerido
+                                        </div>
                                     </div>
 
                                 </div>

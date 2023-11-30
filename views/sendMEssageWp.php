@@ -16,7 +16,7 @@
     $client = new UltraMsg\WhatsAppApi($token,$instance_id);
         
     $to=$eventId; 
-    $body="Tienes una proxima vacuna para ".$paciente." el ".$date." de ".$vacuna; 
+    $body="Tienes una próxima vacuna para ".$paciente." el ".$date." de ".$vacuna; 
     $api=$client->sendChatMessage($to,$body);
     print_r($api);
     echo json_encode(['message' => 'Success']);

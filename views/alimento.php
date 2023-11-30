@@ -237,7 +237,7 @@
                                             <th scope="row"><?php echo $resultado ['nombre']?></th>
                                             <th scope="row"><?php echo $resultado ['especie']?></th>
                                             <th scope="row"><?php echo $resultado ['edad']?></th>
-                                            <th scope="row"><?php echo $resultado ['precio']?></th>
+                                            <th scope="row">$<?php echo $resultado ['precio']?></th>
                                             <th scope="row"><?php echo $resultado ['cantidad']?></th>
                                             <th scope="row"><?php echo $resultado ['fechaCaducidad']?></th>
                                             <th scope="row"><?php echo $resultado ['fechaEntrada']?></th>

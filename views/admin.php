@@ -239,7 +239,86 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                            <div class="bg-img2"></div>
+                            <div class="container mt-5">
+                                <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                    <img src="../images/tk.jpg" class="card-img-top" alt="Producto 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">TK-PET CASETA DE PLÁSTICO 60% RECICLADO ECO</h5>
+                                        <p class="card-text">Caseta de plástico para perros medianos y grandes.</p>
+                                        <div class="text-center"> <!-- Agrega la clase text-center para centrar el botón -->
+                                            <div class="btn btn-primary">$1,505.63 MXN</div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img src="../images/dogz.jpg" class="card-img-top" alt="Producto 1">
+                                        <div class="card-body">
+                                        <h5 class="card-title">DOGZZZ FLUFFY CAMA AFELPADA GRIS</h5>
+                                        <p class="card-text">Cama con forma de Donut color Gris para mascotas.</p>
+                                        <div class="text-center"> <!-- Agrega la clase text-center para centrar el botón -->
+                                            <div class="btn btn-primary">$563.74 MXN</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img src="../images/catshion.jpg" class="card-img-top" alt="Producto 1">
+                                        <div class="card-body">
+                                        <h5 class="card-title">CATSHION POLE RASCADOR GRIS PARA GATOS</h5>
+                                        <p class="card-text">Rascador tubular con sisal Catshion Pole para gatos.</p>
+                                        <div class="text-center"> <!-- Agrega la clase text-center para centrar el botón -->
+                                            <div class="btn btn-primary">$376.27 MXN</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img src="../images/are.jpg" class="card-img-top" alt="Producto 1">
+                                        <div class="card-body">
+                                        <h5 class="card-title">TK-PET DIANA BANDEJA SANITARIA PARA GATOS</h5>
+                                        <p class="card-text">Caja de arena cubierta para felinos, entrenador sanitario. </p>
+                                        <div class="text-center"> <!-- Agrega la clase text-center para centrar el botón -->
+                                            <div class="btn btn-primary">$300.98 MXN</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img src="../images/bebe.jpg" class="card-img-top" alt="Producto 1">
+                                        <div class="card-body">
+                                        <h5 class="card-title">TOLVA BEBEDERO BEIGE PARA MASCOTAS</h5>
+                                        <p class="card-text">Tolva para almacenar agua para mascotas, plastico resistente. </p>
+                                        <div class="text-center"> <!-- Agrega la clase text-center para centrar el botón -->
+                                            <div class="btn btn-primary">$244.51 MXN</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img src="../images/come.jpg" class="card-img-top" alt="Producto 1">
+                                        <div class="card-body">
+                                        <h5 class="card-title">COMEDERO DE ACERO INOXIDABLE PARA PERROS</h5>
+                                        <p class="card-text">Comederos y bebederos TK Pet acero inoxidable antideslizante. </p>
+                                        <div class="text-center"> <!-- Agrega la clase text-center para centrar el botón -->
+                                            <div class="btn btn-primary">$46.87 MXN</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div style="height: 100vh"></div>

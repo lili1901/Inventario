@@ -90,10 +90,8 @@ if(isset($_POST['guardar_paciente']))
     if($query_run)
     {
         $lastid = mysqli_insert_id($conexion); 
-
-        echo "Ultimo ID : ".$lastid; 
-
-        $nombrePropietario = mysqli_real_escape_string($conexion, $_POST['nombre']);
+        //<!--echo "Ultimo ID : ".$lastid;--> 
+        $nombrePropietario = mysqli_real_escape_string($conexion, $_POST['nompropietario']);
         $apellidos = mysqli_real_escape_string($conexion, $_POST['apellidos']);
         $direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
         $telefono = mysqli_real_escape_string($conexion, $_POST['telefono']);
@@ -123,12 +121,13 @@ if(isset($_POST['guardar_paciente']))
                 header("Location: paciente.php");
                 exit(0);
             }        
-            }
-            else
-            { 
-        $_SESSION['message'] = "Student Not Created";
-        header("Location: paciente.php");
-        exit(0);
+    
+                else
+                { 
+                    $_SESSION['message'] = "Student Not Created";
+                    header("Location: paciente.php");
+                    exit(0);
+                }
     }
 }
 

@@ -136,7 +136,7 @@ session_start();
                                         <th scope="row"><?php echo $resultado ['nombre']?></th>
                                         <th scope="row"><?php echo $resultado ['tamanio']?></th>
                                         <th scope="row"><?php echo $resultado ['figura']?></th>
-                                        <th scope="row"><?php echo $resultado ['precio']?></th>
+                                        <th scope="row">$<?php echo $resultado ['precio']?></th>
                                         <th scope="row"><?php echo $resultado ['cantidad']?></th>
                                         <th scope="row"><?php echo date('d-m-Y', strtotime($resultado ['fechaEntrada']))?></th>
                                     

@@ -126,27 +126,42 @@
                                         <div class="row row-cols-auto">                                        
                                             <div class="mb-3">
                                                 <label>Nombre</label>
-                                                <input type="text" name="nombre" class="form-control">
+                                                <input type="text" name="nombrePaciente" class="form-control">
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Especie</label>
-                                                <input type="text" name="especie" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="especie" class="form-label">Especie</label>
+                                                <input type="text" name="especie" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>                           
-                                            <div class="mb-3">
-                                                <label>Raza</label>
-                                                <input type="text" name="raza" class="form-control" >
+                                            <div class="col-md-4">
+                                                <label for="raza" class="form-label">Raza</label>
+                                                <input type="text" name="raza" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Color</label>
-                                                <input type="text" name="color" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="color" class="form-label">Color</label>
+                                                <input type="text" name="color" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Sexo</label>
-                                                <input type="text" name="sexo" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="sexo" class="form-label">Sexo</label>
+                                                <input type="text" name="sexo" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Fecha de nacimiento</label>                                        
-                                                <input type="date" name="fechaNacimiento" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>                                        
+                                                <input type="date" name="fechaNacimiento" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>                                                          
                                         </div>
 
@@ -154,25 +169,37 @@
                                     
                                         <h4 class="card-title text-center">PROPIETARIO</h4>
                                         <div class="row row-cols-auto">                                  
-                                            <div class="mb-3">
-                                                <label>Nombre de Propietario</label>                                        
-                                                <input type="text" name="nompropietario" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="nompropietario" class="form-label">Nombre de Propietario</label>                                        
+                                                <input type="text" name="nompropietario" class="form-control is-invalid" required>
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Apellidos de Propietario</label>                                        
-                                                <input type="text" name="apellidos" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="apellidos" class="form-label">Apellidos de Propietario</label>                                        
+                                                <input type="text" name="apellidos" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Dirección</label>                                        
-                                                <input type="text" name="direccion" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="direccion" class="form-label">Dirección</label>                                        
+                                                <input type="text" name="direccion" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Telefóno</label>                                        
-                                                <input type="text" name="telefono" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="telefono" class="form-label">Telefóno</label>                                        
+                                                <input type="text" name="telefono" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label>Email</label>                                        
-                                                <input type="email" name="email" class="form-control">
+                                            <div class="col-md-4">
+                                                <label for="email" class="form-label">Email</label>                                        
+                                                <input type="email" name="email" class="form-control is-invalid" required>
+                                                <div class="invalid-feedback">
+                                                     Campo requerido
+                                                </div>
                                             </div>
                                         </div>
 
